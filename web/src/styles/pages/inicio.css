@@ -30,16 +30,29 @@
   text-transform: uppercase;
   letter-spacing: -.005em;
 }
+/* Subtítulo bajo el nombre: mismo estilo que el mapa en las fichas de servidor */
+.hero__subtitle {
+  margin-top: 1.1rem;
+  font-family: var(--f-display);
+  font-size: clamp(1.2rem, 2.6vw, 2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-wrap: balance; /* en móvil, dos líneas de largo parecido */
+  color: var(--c-amber);
+}
 .hero__lead {
   max-width: 34rem;
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   font-size: clamp(1.1rem, 1.6vw, 1.3rem);
   color: #d8d2c4;
 }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.25rem; }
 
 /* L'únic moment animat de la pàgina: l'entrada del hero */
-.hero__title, .hero__lead, .hero__actions { animation: rise .9s cubic-bezier(.2, .7, .2, 1) both; }
+.hero__title, .hero__subtitle, .hero__lead, .hero__actions { animation: rise .9s cubic-bezier(.2, .7, .2, 1) both; }
+.hero__subtitle { animation-delay: .06s; }
 .hero__lead { animation-delay: .12s; }
 .hero__actions { animation-delay: .22s; }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }

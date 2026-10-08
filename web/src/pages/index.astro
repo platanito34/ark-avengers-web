@@ -19,7 +19,8 @@ const featured = await getFeaturedServers(3);
     </div>
     <div class="container">
       <h1 class="hero__title" id="hero-title">{site.name}</h1>
-      <p class="hero__lead">Servidores de ARK: Survival Ascended con su estado en directo, la configuración a la vista y una comunidad activa en Discord.</p>
+      <p class="hero__subtitle">{site.subtitle}</p>
+      <p class="hero__lead">Consulta el estado de cada servidor en directo, revisa su configuración antes de entrar y únete a una comunidad activa en Discord.</p>
       <div class="hero__actions">
         <a class="btn btn--primary btn--lg" href="/servidores/">Ver servidores</a>
         <a class="btn btn--quiet btn--lg" href={site.discordUrl} target="_blank" rel="noopener">Entrar al Discord</a>

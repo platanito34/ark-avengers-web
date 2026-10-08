@@ -3,9 +3,11 @@
  * Nombre, enlace de Discord y menú: se cambian aquí y afectan a todas las páginas.
  */
 export const site = {
-  // NOMBRE PROVISIONAL: es el único sitio donde se escribe el nombre del proyecto.
+  // Es el único sitio donde se escribe el nombre del proyecto.
   // En los ficheros Markdown no se escribe a mano: se pone {nombre} y se sustituye solo.
-  name: "Comunidad ARK",
+  name: "ARK Avengers",
+  // Aparece bajo el título grande de la portada y en el título de la pestaña de inicio
+  subtitle: "Servidores de ARK: Survival Ascended",
   description:
     "Servidores de ARK: Survival Ascended con estado en directo, configuración clara y una comunidad activa en Discord.",
 

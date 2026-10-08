@@ -6,8 +6,8 @@ Tres pilares: **Servidores** (lista, estado en directo, fichas), **Proyecto** (q
 Quizá en el futuro haya otros juegos; de momento, solo ARK. No sobrediseñar para multijuego.
 
 ## Nombre
-Todavía NO tenemos nombre para el proyecto ni para los servidores. "Cazamojitos" es provisional.
-El nombre debe salir de un único sitio: `web/src/config/site.ts`. No escribirlo a mano en otras páginas.
+El nombre definitivo del proyecto es **ARK Avengers** (subtítulo: "Servidores de ARK: Survival Ascended").
+Nombre y subtítulo salen de un único sitio: `web/src/config/site.ts` (`name` y `subtitle`). No escribirlos a mano en otras páginas.
 En los ficheros Markdown se escribe `{nombre}` (en el texto y en `intro`/`nombreEnBuscador`) y se sustituye al generar la web.
 - **Excepción con servidores reales:** cuando tengamos los servidores reales, `nombreEnBuscador` se escribe LITERAL en cada ficha (sin `{nombre}`), exactamente igual que el `SessionName` configurado en el servidor de ARK, porque es lo que el jugador busca en el juego.
 
@@ -53,7 +53,7 @@ Navegador → Web estática (web/, Astro) → API propia (api/, FastAPI) → Pte
 - Windows: si PowerShell bloquea npm, usar `npm.cmd` o `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
 
 ## Próximos pasos previstos (no empezar sin que lo pida)
-1. Nombre provisional neutro centralizado en `site.ts`.
+1. ~~Nombre centralizado en `site.ts`.~~ Hecho: ARK Avengers.
 2. Revisar textos y datos reales de los servidores.
 3. Implementar la fuente `ark_rcon` para los servidores actuales.
 4. Conectar Pterodactyl (`PTERODACTYL_MODE=live`) cuando esté instalado.
