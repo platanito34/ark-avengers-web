@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { site } from "../config/site";
+import "../styles/pages/interior.css";
+---
+<BaseLayout title="Comunidad" description="Discord, eventos y soporte de la comunidad de Cazamojitos.">
+  <PageHeader
+    title="Comunidad"
+    intro="Casi todo pasa en nuestro Discord: avisos, eventos, ayuda y gente con la que jugar."
+  />
+
+  <section class="page-body">
+    <div class="container">
+      <!-- TEXTOS PROVISIONALES: revisa que todo esto sea cierto antes de publicar -->
+      <div class="feature-grid">
+        <div class="feature">
+          <h3>Avisos</h3>
+          <p>Reinicios, mantenimientos y actualizaciones, con antelación.</p>
+        </div>
+        <div class="feature">
+          <h3>Eventos</h3>
+          <p>Actividades de comunidad dentro y fuera de los servidores.</p>
+        </div>
+        <div class="feature">
+          <h3>Soporte</h3>
+          <p>Un canal para pedir ayuda al equipo de administración.</p>
+        </div>
+        <div class="feature">
+          <h3>Tribus</h3>
+          <p>Un sitio donde buscar compañeros para empezar o reforzar tu tribu.</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <div>
+          <h2>Cómo pedir ayuda</h2>
+          <ol class="steps">
+            <li>Entra en el Discord y lee el canal de bienvenida.</li>
+            <li>Abre una consulta en el canal de soporte.</li>
+            <li>Indica en qué servidor juegas, tu nombre en el juego y qué ha pasado.</li>
+          </ol>
+        </div>
+        <div>
+          <h2>Convivencia</h2>
+          <div class="prose">
+            <p>Las normas se aplican igual en los servidores y en Discord. Antes de jugar, échales un vistazo.</p>
+            <p><a href="/normas/">Leer las normas</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="community" aria-labelledby="community-title">
+    <svg class="community__art" viewBox="0 0 200 600" aria-hidden="true">
+      <path fill="currentColor" d="M100 0 170 170 140 600H60L30 170Z"/>
+    </svg>
+    <div class="container community__inner">
+      <div class="community__text">
+        <h2 id="community-title">Te esperamos en Discord</h2>
+        <p>Entrar es gratis y solo necesitas una cuenta de Discord.</p>
+      </div>
+      <div class="community__cta">
+        <a class="btn btn--discord btn--lg" href={site.discordUrl} target="_blank" rel="noopener">Únete al Discord</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

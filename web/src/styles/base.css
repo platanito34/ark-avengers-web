@@ -1,0 +1,94 @@
+/* ==========================================================================
+   BASE: variables de disseny (tokens), reset i tipografia.
+   Si vols canviar colors o fonts de tota la web, és aquí.
+   ========================================================================== */
+:root {
+  /* Colors */
+  --c-basalt: #12191b;      /* fons principal */
+  --c-basalt-2: #182326;    /* superfícies (targetes, panells) */
+  --c-moss: #1d2f2b;        /* superfícies destacades */
+  --c-line: #2a3b3a;        /* línies i separadors */
+  --c-bone: #ece6d8;        /* text principal */
+  --c-muted: #93a39f;       /* text secundari */
+  --c-amber: #e8a33d;       /* acció principal (botons, accents) */
+  --c-amber-hover: #f2b65a;
+  --c-obelisk: #62d6c8;     /* NOMÉS per a estat "online" / dades en directe */
+  --c-offline: #6b7472;
+  --c-discord: #5865f2;
+  --c-discord-hover: #6d78f5;
+
+  /* Tipografia */
+  --f-display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Barlow", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Mides */
+  --container: 1200px;
+  --header-h: 76px;
+  --space-section: clamp(4.5rem, 9vw, 7.5rem);
+  --safe-top: env(safe-area-inset-top, 0px);
+
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*, *::before, *::after { box-sizing: inherit; }
+
+html {
+  background: var(--c-basalt);
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + var(--safe-top));
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--c-bone);
+  background: var(--c-basalt);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; }
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  line-height: .95;
+  letter-spacing: .005em;
+}
+h2 { font-size: clamp(2.4rem, 5.5vw, 3.75rem); }
+h3 { font-size: 1.6rem; }
+
+.container {
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+
+.section { padding-block: var(--space-section); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: 1rem; top: -4rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--c-amber); color: #1a1206; font-weight: 600;
+}
+.skip-link:focus { top: calc(1rem + var(--safe-top)); }
+
+:focus-visible { outline: 2px solid var(--c-amber); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

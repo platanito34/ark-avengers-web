@@ -1,0 +1,53 @@
+# =============================================================================
+# SERVIDORES Y FUENTES DE ESTADO
+# -----------------------------------------------------------------------------
+# La clave de cada servidor (el "slug") debe ser IGUAL que el nombre del fichero
+# de su ficha en la web:  web/src/content/servidores/<slug>.md
+#
+# sources: de dónde se saca el estado, por orden de prioridad.
+#   - pterodactyl : estado del proceso (encendido/apagado). Opción: server_id
+#   - ark_rcon    : jugadores y versión desde el juego (preparada, sin implementar)
+#   - mock        : datos de prueba de mock/status.yaml
+#
+# maintenance: true  -> la web muestra "Mantenimiento" sin consultar nada.
+#
+# Aquí NO van contraseñas ni claves: esas van en .env
+#
+# ⚠️ DATOS DE EJEMPLO. Los server_id son inventados.
+# =============================================================================
+
+servers:
+  the-island-pve:
+    sources:
+      - type: pterodactyl
+        server_id: "1a7ce997"
+      - type: mock            # cuando exista: type: ark_rcon (jugadores reales)
+
+  scorched-earth-pvp:
+    sources:
+      - type: pterodactyl
+        server_id: "5b2e04f1"
+      - type: mock
+
+  the-center-pve:
+    sources:
+      - type: pterodactyl
+        server_id: "c93d7a20"
+      - type: mock
+
+  aberration-pve:
+    maintenance: true
+    sources:
+      - type: pterodactyl
+        server_id: "e41b88d6"
+      - type: mock
+
+  # Ejemplo de servidor que NO está en Pterodactyl (p. ej. en Windows Server).
+  # Su estado vendrá solo del juego.
+  extinction-pve:
+    sources:
+      - type: mock
+      # - type: ark_rcon
+      #   host_env: EXTINCTION_RCON_HOST
+      #   port_env: EXTINCTION_RCON_PORT
+      #   password_env: EXTINCTION_RCON_PASSWORD

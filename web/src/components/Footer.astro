@@ -1,0 +1,26 @@
+---
+import { site } from "../config/site";
+import Icon from "./Icon.astro";
+---
+<footer class="site-footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a class="brand" href="/"><Icon name="mark" /><span>{site.name}</span></a>
+      <p>Servidores de ARK: Survival Ascended y la comunidad que juega en ellos.</p>
+    </div>
+    <nav aria-label="Pie de página">
+      <ul class="footer__links">
+        {site.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <div>
+      <a class="btn btn--discord btn--sm" href={site.discordUrl} target="_blank" rel="noopener">
+        <Icon name="chat" /><span>Discord</span>
+      </a>
+    </div>
+  </div>
+  <div class="container footer__legal">
+    <p>© {new Date().getFullYear()} {site.name}.</p>
+    <p>Proyecto no oficial. ARK: Survival Ascended es una marca de Studio Wildcard.</p>
+  </div>
+</footer>

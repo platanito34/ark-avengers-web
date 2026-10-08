@@ -1,0 +1,55 @@
+{
+  "servers": [
+    {
+      "slug": "the-island-pve",
+      "state": "online",
+      "players": {
+        "current": 38,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "slug": "scorched-earth-pvp",
+      "state": "online",
+      "players": {
+        "current": 21,
+        "max": 50
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "slug": "the-center-pve",
+      "state": "online",
+      "players": {
+        "current": 44,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "slug": "aberration-pve",
+      "state": "online",
+      "players": {
+        "current": 17,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "slug": "extinction-pve",
+      "state": "online",
+      "players": {
+        "current": 9,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    }
+  ],
+  "generated_at": "2026-01-01T12:00:00Z"
+}

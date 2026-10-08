@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServerCard from "../components/ServerCard.astro";
+import Icon from "../components/Icon.astro";
+import { site } from "../config/site";
+import { getFeaturedServers, getVisibleServers } from "../lib/servers";
+import "../styles/pages/inicio.css";
+
+const servers = await getVisibleServers();
+const featured = await getFeaturedServers(3);
+---
+<BaseLayout transparentHeader>
+
+  <!-- HERO ================================================================ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__media">
+      <!-- Imagen provisional: sustituye public/img/hero.jpg por la tuya -->
+      <img src="/img/hero.jpg" alt="" fetchpriority="high" width="1920" height="1200">
+    </div>
+    <div class="container">
+      <h1 class="hero__title" id="hero-title">{site.name}</h1>
+      <p class="hero__lead">Servidores de ARK: Survival Ascended con su estado en directo, la configuración a la vista y una comunidad activa en Discord.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary btn--lg" href="/servidores/">Ver servidores</a>
+        <a class="btn btn--quiet btn--lg" href={site.discordUrl} target="_blank" rel="noopener">Entrar al Discord</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTADO DE LOS SERVIDORES ============================================ -->
+  <section class="status-panel" aria-labelledby="status-title">
+    <div class="container">
+      <div class="status-panel__inner is-loading" data-live-summary data-slugs={servers.map((s) => s.id).join(",")}>
+        <div class="status-panel__intro">
+          <h2 id="status-title">Estado de los servidores</h2>
+          <p class="status-panel__updated" data-summary="updated" aria-live="polite">Comprobando estado…</p>
+        </div>
+        <div class="stat">
+          <p class="stat__value">{servers.length}</p>
+          <p class="stat__label">Servidores</p>
+        </div>
+        <div class="stat">
+          <p class="stat__value stat__value--live" data-summary="online">–</p>
+          <p class="stat__label">Online ahora</p>
+        </div>
+        <div class="stat">
+          <p class="stat__value" data-summary="players">–</p>
+          <p class="stat__label">Jugadores conectados</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIDORES DESTACADOS =============================================== -->
+  <section class="section" aria-labelledby="featured-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="featured-title">Servidores destacados</h2>
+        <a class="text-link" href="/servidores/">Todos los servidores</a>
+      </div>
+      {featured.length > 0 ? (
+        <div class="server-grid">
+          {featured.map((server) => <ServerCard server={server} />)}
+        </div>
+      ) : (
+        <p class="empty-state">Todavía no hay servidores destacados. Consulta la lista completa de servidores.</p>
+      )}
+    </div>
+  </section>
+
+  <!-- LOS TRES PILARES ==================================================== -->
+  <section class="section about" aria-labelledby="about-title">
+    <div class="container about__grid">
+      <div class="about__intro">
+        <h2 id="about-title">Más que un sitio donde conectarse</h2>
+        <!-- TEXTO PROVISIONAL -->
+        <p>Cazamojitos nació como una comunidad de jugadores. Aquí tienes los servidores, quién hay detrás y dónde encontrarnos.</p>
+      </div>
+      <ul class="pillars">
+        <li class="pillar">
+          <Icon name="servers" class="pillar__icon" />
+          <div>
+            <h3><a href="/servidores/">Servidores</a></h3>
+            <p>Mapas, modos, rates, mods y normas de cada servidor, con su estado y jugadores en directo.</p>
+          </div>
+        </li>
+        <li class="pillar">
+          <Icon name="flag" class="pillar__icon" />
+          <div>
+            <h3><a href="/proyecto/">Proyecto</a></h3>
+            <p>Quiénes somos, cómo empezó todo, qué queremos ofrecer y cómo cuidamos los servidores.</p>
+          </div>
+        </li>
+        <li class="pillar">
+          <Icon name="people" class="pillar__icon" />
+          <div>
+            <h3><a href="/comunidad/">Comunidad</a></h3>
+            <p>Discord, eventos, ayuda entre jugadores y soporte del equipo de administración.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COMUNIDAD / DISCORD ================================================= -->
+  <section class="community" aria-labelledby="community-title">
+    <svg class="community__art" viewBox="0 0 200 600" aria-hidden="true">
+      <path fill="currentColor" d="M100 0 170 170 140 600H60L30 170Z"/>
+    </svg>
+    <div class="container community__inner">
+      <div class="community__text">
+        <h2 id="community-title">La partida sigue en Discord</h2>
+        <p>Avisos de reinicios, eventos, soporte y gente con la que formar tribu.</p>
+      </div>
+      <div class="community__cta">
+        <a class="btn btn--discord btn--lg" href={site.discordUrl} target="_blank" rel="noopener">Únete al Discord</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

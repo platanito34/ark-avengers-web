@@ -1,0 +1,146 @@
+---
+/**
+ * FICHA DE SERVIDOR
+ * Se genera una página por cada fichero de src/content/servidores/.
+ */
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
+import { site } from "../../config/site";
+import { getVisibleServers, RATE_LABELS, type Server } from "../../lib/servers";
+import { STATE_LABELS } from "../../lib/status-types";
+import "../../styles/pages/interior.css";
+
+export async function getStaticPaths() {
+  const servers = await getVisibleServers();
+  return servers.map((server) => ({ params: { slug: server.id }, props: { server } }));
+}
+
+interface Props { server: Server }
+const { server } = Astro.props;
+const d = server.data;
+const { Content } = await render(server);
+
+const allRules = await getCollection("normas");
+const rules = d.normas
+  .map((id) => allRules.find((r) => r.id === id))
+  .filter((r) => r !== undefined)
+  .sort((a, b) => a.data.orden - b.data.orden);
+const renderedRules = await Promise.all(rules.map(async (r) => ({ rule: r, ...(await render(r)) })));
+---
+<BaseLayout title={`${d.nombre} (${d.mapa})`} description={d.resumen} image={d.imagen} transparentHeader>
+  <div data-live-slug={server.id} data-max-players={d.jugadoresMax}>
+
+    <section class="ficha-hero">
+      <div class="ficha-hero__media"><img src={d.imagen} alt="" width="1280" height="720"></div>
+      <div class="container">
+        <a class="ficha-hero__back" href="/servidores/">Todos los servidores</a>
+        <p class="ficha-hero__map">{d.mapa}</p>
+        <h1>{d.nombre}</h1>
+        <div class="ficha-hero__meta">
+          <span class="status" data-live="chip" data-state="pending">{STATE_LABELS.pending}</span>
+          <span class="tag">{d.modo}</span>
+          {d.cluster && <span class="tag tag--quiet">Clúster {d.cluster}</span>}
+        </div>
+      </div>
+    </section>
+
+    <div class="container ficha__grid">
+      <div class="ficha__main">
+        <section aria-labelledby="sobre">
+          <h2 id="sobre">Sobre este servidor</h2>
+          <div class="prose"><Content /></div>
+        </section>
+
+        <section aria-labelledby="rates">
+          <h2 id="rates">Rates</h2>
+          <dl class="rates">
+            {RATE_LABELS.map(([key, label]) => <div><dt>{label}</dt><dd>x{d.rates[key]}</dd></div>)}
+          </dl>
+        </section>
+
+        {d.caracteristicas.length > 0 && (
+          <section aria-labelledby="caracteristicas">
+            <h2 id="caracteristicas">Características</h2>
+            <ul class="check-list">{d.caracteristicas.map((c) => <li>{c}</li>)}</ul>
+          </section>
+        )}
+
+        <section aria-labelledby="mods">
+          <h2 id="mods">Mods</h2>
+          {d.mods.length > 0 ? (
+            <ul class="mods">
+              {d.mods.map((m) => <li>{m.nombre}{m.id && <span>ID {m.id}</span>}</li>)}
+            </ul>
+          ) : (
+            <p class="muted">Este servidor funciona sin mods.</p>
+          )}
+        </section>
+
+        {renderedRules.length > 0 && (
+          <section aria-labelledby="normas">
+            <h2 id="normas">Normas</h2>
+            {renderedRules.map(({ rule, Content: RuleContent }) => (
+              <div class="rules-block prose">
+                <h3>{rule.data.titulo}</h3>
+                <RuleContent />
+              </div>
+            ))}
+          </section>
+        )}
+      </div>
+
+      <aside class="ficha__aside">
+        <section class="panel" aria-labelledby="estado">
+          <h2 id="estado">Estado</h2>
+          <div class="players">
+            <div class="players__row">
+              <span>Jugadores</span>
+              <span data-live="players"><strong>–</strong> / {d.jugadoresMax}</span>
+            </div>
+            <div class="players__bar" aria-hidden="true"><span data-live="players-bar"></span></div>
+          </div>
+          <dl class="panel__list">
+            <div><dt>Versión</dt><dd data-live="version">–</dd></div>
+          </dl>
+          <p class="panel__note" data-live="checked">–</p>
+        </section>
+
+        <section class="panel" aria-labelledby="conectar">
+          <h2 id="conectar">Cómo entrar</h2>
+          <ol class="steps">
+            <li>Abre ARK: Survival Ascended y entra en Unirse a ARK.</li>
+            <li>
+              Busca el servidor por su nombre:
+              <span class="copy-field">
+                <code>{d.conexion.nombreEnBuscador}</code>
+                <button type="button" data-copy={d.conexion.nombreEnBuscador}>
+                  <Icon name="copy" /><span>Copiar</span>
+                </button>
+              </span>
+            </li>
+            {d.conexion.contrasena
+              ? <li>Tiene contraseña: pídela en el <a class="text-link" href={site.discordUrl} target="_blank" rel="noopener">Discord</a>.</li>
+              : <li>Entra y crea tu superviviente.</li>}
+          </ol>
+          <p class="platforms">Disponible en <strong>{d.conexion.plataformas.join(", ")}</strong></p>
+        </section>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((btn) => {
+    const label = btn.querySelector("span")!;
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy!);
+        label.textContent = "Copiado";
+      } catch {
+        label.textContent = "Cópialo a mano";
+      }
+      setTimeout(() => (label.textContent = "Copiar"), 2000);
+    });
+  });
+</script>

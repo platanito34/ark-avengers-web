@@ -1,0 +1,186 @@
+/* ==========================================================================
+   COMPONENTS: peces reutilitzables (botons, estat, targeta de servidor...).
+   El "tall" a les cantonades és el motiu visual de la marca.
+   ========================================================================== */
+
+/* ---------- Botons ---------- */
+.btn {
+  --notch: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .85rem 1.5rem;
+  border: 0;
+  font-family: var(--f-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  line-height: 1.1;
+  text-decoration: none;
+  cursor: pointer;
+  clip-path: polygon(var(--notch) 0, 100% 0, 100% calc(100% - var(--notch)), calc(100% - var(--notch)) 100%, 0 100%, 0 var(--notch));
+  transition: background-color .15s ease, color .15s ease;
+}
+/* El clip-path retalla els outlines externs: el focus es dibuixa per dins */
+.btn:focus-visible { outline: 2px solid currentColor; outline-offset: -5px; }
+.btn svg { width: 1.1em; height: 1.1em; flex: none; }
+
+.btn--primary { background: var(--c-amber); color: #1a1206; }
+.btn--primary:hover { background: var(--c-amber-hover); }
+
+.btn--discord { background: var(--c-discord); color: #fff; }
+.btn--discord:hover { background: var(--c-discord-hover); }
+
+.btn--quiet { background: rgba(236, 230, 216, .08); color: var(--c-bone); }
+.btn--quiet:hover { background: rgba(236, 230, 216, .15); }
+
+.btn--sm { --notch: 7px; padding: .55rem 1rem; font-size: 1.05rem; }
+.btn--lg { --notch: 13px; padding: 1.05rem 2rem; font-size: 1.4rem; }
+
+/* ---------- Indicador d'estat ---------- */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .3rem .7rem;
+  border-radius: 999px;
+  background: rgba(18, 25, 27, .82);
+  font-size: .85rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.status::before {
+  content: "";
+  width: .5rem; height: .5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+/* El estado lo pone el script de estado en directo: data-state="online|starting|..." */
+.status { color: var(--c-muted); }
+.status[data-state="online"] { color: var(--c-obelisk); }
+.status[data-state="online"]::before { animation: live-pulse 2.4s ease-out infinite; }
+.status[data-state="starting"],
+.status[data-state="stopping"],
+.status[data-state="maintenance"] { color: var(--c-amber); }
+.status[data-state="offline"] { color: var(--c-offline); }
+.status[data-state="unknown"]::before,
+.status[data-state="pending"]::before { background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; }
+
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(98, 214, 200, .6); }
+  70%  { box-shadow: 0 0 0 .5rem rgba(98, 214, 200, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(98, 214, 200, 0); }
+}
+
+/* ---------- Capçalera de secció ---------- */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-bottom: 2.5rem;
+}
+.text-link {
+  font-weight: 600;
+  color: var(--c-amber);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3em;
+}
+.text-link:hover { color: var(--c-amber-hover); }
+
+/* ---------- Targeta de servidor ---------- */
+.server-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
+}
+
+.server-card {
+  --notch: 20px;
+  display: flex;
+  flex-direction: column;
+  background: var(--c-basalt-2);
+  clip-path: polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%);
+}
+.server-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--c-moss);
+}
+.server-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.server-card__media .status { position: absolute; top: 1rem; left: 1rem; }
+.server-card__mode {
+  position: absolute; right: 1rem; bottom: 1rem;
+  padding: .2rem .6rem;
+  background: rgba(18, 25, 27, .82);
+  font-family: var(--f-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.server-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.4rem 1.5rem 1.6rem;
+}
+.server-card__map { color: var(--c-amber); font-weight: 600; font-size: .95rem; margin-bottom: .35rem; }
+.server-card__title { font-size: 2rem; }
+
+.players__row { display: flex; justify-content: space-between; font-size: .95rem; color: var(--c-muted); }
+.players__row strong { color: var(--c-bone); font-weight: 600; }
+.players__bar { height: 6px; margin-top: .5rem; background: var(--c-line); }
+.players__bar span { display: block; height: 100%; background: var(--c-obelisk); }
+
+.rates {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  border-block: 1px solid var(--c-line);
+}
+.rates > div { padding: .7rem .25rem; text-align: center; }
+.rates > div + div { border-left: 1px solid var(--c-line); }
+.rates dt { font-size: .78rem; color: var(--c-muted); white-space: nowrap; }
+.rates dd { margin: 0; font-family: var(--f-display); font-size: 1.45rem; font-weight: 700; line-height: 1.2; }
+
+.server-card .btn { align-self: flex-start; margin-top: auto; }
+
+/* Servidor apagado o en mantenimiento: imagen apagada */
+[data-state="offline"] .server-card__media img,
+[data-state="maintenance"] .server-card__media img { filter: grayscale(.85) brightness(.65); }
+.players__bar span { width: 0; transition: width .6s ease; }
+[data-state]:not([data-state="online"]) .players__bar span { width: 0 !important; }
+
+.empty-state { color: var(--c-muted); padding: 2rem 0; }
+
+/* ---------- Banda de Discord (portada y comunidad) ---------- */
+.community {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--c-moss);
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+}
+.community__art {
+  position: absolute; z-index: -1;
+  right: max(2%, calc(50% - 640px)); top: 50%;
+  height: 135%; width: auto;
+  transform: translateY(-50%);
+  color: var(--c-bone); opacity: .07;
+}
+.community__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+.community__text { max-width: 36rem; }
+.community__text p { margin-top: 1.25rem; font-size: 1.15rem; color: #d3cdbf; }
+.community__cta { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+.community__count { color: var(--c-muted); }
+.community__count strong { color: var(--c-bone); font-family: var(--f-display); font-size: 1.6rem; font-weight: 700; margin-right: .3rem; }

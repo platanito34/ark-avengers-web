@@ -1,0 +1,39 @@
+---
+/**
+ * Tarjeta de servidor. El contenido fijo sale de la ficha (.md);
+ * el estado y los jugadores los rellena el script de estado en directo.
+ */
+import { RATE_LABELS, type Server } from "../lib/servers";
+import { STATE_LABELS } from "../lib/status-types";
+
+interface Props { server: Server }
+const { server } = Astro.props;
+const d = server.data;
+const href = `/servidores/${server.id}/`;
+---
+<article class="server-card" data-live-slug={server.id} data-max-players={d.jugadoresMax} data-mode={d.modo}>
+  <div class="server-card__media">
+    <img src={d.imagen} alt="" loading="lazy" width="640" height="360">
+    <span class="status" data-live="chip" data-state="pending">{STATE_LABELS.pending}</span>
+    <span class="server-card__mode">{d.modo}</span>
+  </div>
+  <div class="server-card__body">
+    <div>
+      <p class="server-card__map">{d.mapa}</p>
+      <h3 class="server-card__title">{d.nombre}</h3>
+    </div>
+    <div class="players">
+      <div class="players__row">
+        <span>Jugadores</span>
+        <span data-live="players"><strong>–</strong> / {d.jugadoresMax}</span>
+      </div>
+      <div class="players__bar" aria-hidden="true"><span data-live="players-bar"></span></div>
+    </div>
+    <dl class="rates">
+      {RATE_LABELS.map(([key, label]) => (
+        <div><dt>{label}</dt><dd>x{d.rates[key]}</dd></div>
+      ))}
+    </dl>
+    <a class="btn btn--quiet btn--sm" href={href} aria-label={`Ver servidor ${d.nombre}`}>Ver servidor</a>
+  </div>
+</article>

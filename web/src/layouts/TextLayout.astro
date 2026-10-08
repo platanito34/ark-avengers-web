@@ -1,0 +1,25 @@
+---
+/**
+ * Plantilla para páginas de texto escritas en Markdown (p. ej. src/pages/proyecto.md).
+ * En el .md basta con poner en la cabecera:
+ *   layout: ../layouts/TextLayout.astro
+ *   title: ...
+ *   intro: ...
+ */
+import BaseLayout from "./BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import "../styles/pages/interior.css";
+
+const { frontmatter } = Astro.props;
+---
+<BaseLayout title={frontmatter.title} description={frontmatter.intro}>
+  <PageHeader title={frontmatter.title} intro={frontmatter.intro} />
+  <section class="page-body">
+    <div class="container">
+      {frontmatter.provisional && (
+        <p class="notice">Texto provisional. Sustitúyelo editando el fichero de esta página.</p>
+      )}
+      <div class="prose"><slot /></div>
+    </div>
+  </section>
+</BaseLayout>

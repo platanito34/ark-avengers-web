@@ -1,0 +1,60 @@
+---
+import { site } from "../config/site";
+import Icon from "./Icon.astro";
+
+interface Props {
+  /** true = transparente sobre una imagen grande (portada, fichas) */
+  transparent?: boolean;
+}
+const { transparent = false } = Astro.props;
+
+const path = Astro.url.pathname.replace(/\/?$/, "/");
+const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+---
+<header class="site-header" class:list={{ "is-solid": !transparent }} data-transparent={transparent ? "true" : "false"}>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <nav class="nav container" aria-label="Principal">
+    <a class="brand" href="/"><Icon name="mark" /><span>{site.name}</span></a>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+      <span class="sr-only">Abrir el menú</span><span class="nav__toggle-bars" aria-hidden="true"></span>
+    </button>
+
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__links">
+        {site.nav.map((item) => (
+          <li><a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+      <a class="btn btn--discord btn--sm" href={site.discordUrl} target="_blank" rel="noopener">
+        <Icon name="chat" /><span>Discord</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>(".site-header")!;
+  const toggle = header.querySelector<HTMLButtonElement>(".nav__toggle")!;
+  const menu = header.querySelector<HTMLElement>(".nav__menu")!;
+  const label = toggle.querySelector(".sr-only")!;
+  const transparent = header.dataset.transparent === "true";
+
+  function updateSolid() {
+    const solid = !transparent || window.scrollY > 24 || menu.classList.contains("is-open");
+    header.classList.toggle("is-solid", solid);
+  }
+
+  function setOpen(open: boolean) {
+    toggle.setAttribute("aria-expanded", String(open));
+    label.textContent = open ? "Cerrar el menú" : "Abrir el menú";
+    menu.classList.toggle("is-open", open);
+    updateSolid();
+  }
+
+  toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
+  document.addEventListener("keydown", (e) => e.key === "Escape" && setOpen(false));
+  window.matchMedia("(min-width: 961px)").addEventListener("change", (e) => e.matches && setOpen(false));
+  window.addEventListener("scroll", updateSolid, { passive: true });
+  updateSolid();
+</script>

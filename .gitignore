@@ -1,0 +1,11 @@
+# Dependencias y compilados
+node_modules/
+web/dist/
+web/.astro/
+__pycache__/
+.pytest_cache/
+.venv/
+
+# Secretos: nunca al repositorio
+.env
+!.env.example

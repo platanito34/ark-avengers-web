@@ -1,0 +1,61 @@
+---
+/**
+ * Plantilla común de todas las páginas: <head>, menú, pie y estado en directo.
+ */
+import "../styles/base.css";
+import "../styles/layout.css";
+import "../styles/components.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  /** Menú transparente sobre una imagen grande al principio de la página */
+  transparentHeader?: boolean;
+}
+const { title, description = site.description, image = site.ogImage, transparentHeader = false } = Astro.props;
+
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Servidores de ARK: Survival Ascended`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  <meta name="theme-color" content="#12191b">
+  <link rel="canonical" href={canonical}>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Vista previa al compartir en Discord / redes -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content={site.name}>
+  <meta property="og:title" content={fullTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800;900&display=swap">
+</head>
+<body>
+  <Header transparent={transparentHeader} />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+    import { startLiveStatus } from "../scripts/live-status";
+    startLiveStatus();
+  </script>
+</body>
+</html>

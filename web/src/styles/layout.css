@@ -1,0 +1,141 @@
+/* ==========================================================================
+   LAYOUT: capçalera (navbar) i peu de pàgina, compartits per totes les pàgines.
+   ========================================================================== */
+
+/* ---------- Navbar ---------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  padding-top: var(--safe-top);
+  transition: background-color .25s ease, box-shadow .25s ease;
+}
+.site-header.is-solid {
+  background: rgba(18, 25, 27, .94);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--c-line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  height: var(--header-h);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 1.65rem;
+  letter-spacing: .02em;
+  line-height: 1;
+}
+.brand__mark { width: 20px; height: 32px; color: var(--c-amber); flex: none; }
+
+.nav__menu { display: flex; align-items: center; gap: 2.25rem; }
+.nav__links { list-style: none; display: flex; gap: 1.75rem; }
+.nav__links a {
+  position: relative;
+  display: block;
+  padding: .35rem 0;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--c-muted);
+  transition: color .15s ease;
+}
+.nav__links a:hover,
+.nav__links a[aria-current="page"] { color: var(--c-bone); }
+.nav__links a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -3px 0;
+  height: 2px;
+  background: var(--c-amber);
+}
+
+.nav__toggle {
+  display: none;
+  width: 44px; height: 44px;
+  align-items: center; justify-content: center;
+  background: transparent; border: 0; color: var(--c-bone); cursor: pointer;
+}
+.nav__toggle-bars,
+.nav__toggle-bars::before,
+.nav__toggle-bars::after {
+  display: block; width: 24px; height: 2px; background: currentColor;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.nav__toggle-bars { position: relative; }
+.nav__toggle-bars::before,
+.nav__toggle-bars::after { content: ""; position: absolute; left: 0; }
+.nav__toggle-bars::before { top: -7px; }
+.nav__toggle-bars::after { top: 7px; }
+.nav__toggle[aria-expanded="true"] .nav__toggle-bars { background: transparent; }
+.nav__toggle[aria-expanded="true"] .nav__toggle-bars::before { transform: translateY(7px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] .nav__toggle-bars::after { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 960px) {
+  .nav__toggle { display: inline-flex; }
+  .nav__menu {
+    position: fixed;
+    inset: calc(var(--header-h) + var(--safe-top)) 0 auto 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    padding: .5rem 1.25rem 2rem;
+    background: var(--c-basalt);
+    border-bottom: 1px solid var(--c-line);
+    max-height: calc(100dvh - var(--header-h) - var(--safe-top));
+    overflow-y: auto;
+  }
+  .nav__menu.is-open { display: flex; }
+  .nav__links { flex-direction: column; gap: 0; }
+  .nav__links a {
+    padding: 1rem 0;
+    font-size: 1.15rem;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .nav__links a[aria-current="page"] { color: var(--c-amber); }
+  .nav__links a[aria-current="page"]::after { display: none; }
+  .nav__menu .btn { justify-content: center; }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--c-line);
+  padding-top: 3.5rem;
+  font-size: .975rem;
+  color: var(--c-muted);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr auto;
+  gap: 2.5rem;
+  align-items: start;
+}
+.footer__brand .brand { color: var(--c-bone); margin-bottom: 1rem; }
+.footer__brand p { max-width: 30ch; }
+.footer__links { list-style: none; display: grid; grid-template-columns: repeat(2, auto); gap: .55rem 2rem; justify-content: start; }
+.footer__links a { text-decoration: none; }
+.footer__links a:hover { color: var(--c-bone); }
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5rem 2rem;
+  margin-top: 3rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--c-line);
+  font-size: .875rem;
+}
+
+@media (max-width: 760px) {
+  .footer__grid { grid-template-columns: 1fr; gap: 2rem; }
+}

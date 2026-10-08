@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import ServerCard from "../../components/ServerCard.astro";
+import { getVisibleServers } from "../../lib/servers";
+import "../../styles/pages/interior.css";
+
+const servers = await getVisibleServers();
+const modes = [...new Set(servers.map((s) => s.data.modo))].sort();
+---
+<BaseLayout title="Servidores" description="Lista de servidores de ARK: Survival Ascended con su estado, jugadores, mapa, modo y rates.">
+  <PageHeader
+    title="Servidores"
+    intro="Todos nuestros servidores con su estado en directo. Entra en la ficha de cada uno para ver los mods, las normas y cómo conectarte."
+  />
+
+  <section class="page-body">
+    <div class="container">
+      {modes.length > 1 && (
+        <div class="filters" role="group" aria-label="Filtrar por modo">
+          <button type="button" data-filter="todos" aria-pressed="true">Todos</button>
+          {modes.map((m) => <button type="button" data-filter={m} aria-pressed="false">{m}</button>)}
+        </div>
+      )}
+
+      {servers.length > 0 ? (
+        <div class="server-grid">
+          {servers.map((server) => <ServerCard server={server} />)}
+        </div>
+      ) : (
+        <p class="empty-state">Todavía no hay servidores publicados. Pasa por el Discord para saber cuándo abrimos.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const cards = document.querySelectorAll<HTMLElement>(".server-card[data-mode]");
+  buttons.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      cards.forEach((card) => (card.hidden = filter !== "todos" && card.dataset.mode !== filter));
+    })
+  );
+</script>

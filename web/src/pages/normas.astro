@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import "../styles/pages/interior.css";
+
+// Todas las normas de src/content/normas/, en el orden del campo `orden`
+const rules = (await getCollection("normas")).sort((a, b) => a.data.orden - b.data.orden);
+const rendered = await Promise.all(rules.map(async (r) => ({ rule: r, ...(await render(r)) })));
+---
+<BaseLayout title="Normas" description="Normas de convivencia de los servidores y de la comunidad.">
+  <PageHeader
+    title="Normas"
+    intro="Lo que esperamos de todos los que juegan con nosotros. Cada servidor indica en su ficha qué normas se le aplican."
+  />
+  <section class="page-body">
+    <div class="container">
+      {rendered.map(({ rule, Content }) => (
+        <div class="rules-block prose" id={rule.id}>
+          <h2>{rule.data.titulo}</h2>
+          <Content />
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
