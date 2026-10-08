@@ -8,6 +8,8 @@ Quizá en el futuro haya otros juegos; de momento, solo ARK. No sobrediseñar pa
 ## Nombre
 Todavía NO tenemos nombre para el proyecto ni para los servidores. "Cazamojitos" es provisional.
 El nombre debe salir de un único sitio: `web/src/config/site.ts`. No escribirlo a mano en otras páginas.
+En los ficheros Markdown se escribe `{nombre}` (en el texto y en `intro`/`nombreEnBuscador`) y se sustituye al generar la web.
+- **Excepción con servidores reales:** cuando tengamos los servidores reales, `nombreEnBuscador` se escribe LITERAL en cada ficha (sin `{nombre}`), exactamente igual que el `SessionName` configurado en el servidor de ARK, porque es lo que el jugador busca en el juego.
 
 ## Arquitectura
 ```

@@ -12,7 +12,7 @@ Aquí irá la presentación del equipo: cuántos sois, qué hace cada uno y por 
 
 ## Cómo empezó
 
-La historia del proyecto: cuándo abristeis el primer servidor, para quién era y cómo fue creciendo la comunidad.
+La historia de {nombre}: cuándo abristeis el primer servidor, para quién era y cómo fue creciendo la comunidad.
 
 ## Qué ofrecemos
 

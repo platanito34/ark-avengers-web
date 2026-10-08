@@ -29,6 +29,6 @@ mods:
 normas: [generales]
 ---
 
-Texto de ejemplo de la descripción. Aquí explicaréis qué hace especial este servidor, para qué tipo de jugador está pensado y cualquier detalle de la configuración que merezca contarse.
+Texto de ejemplo de la descripción de este servidor de {nombre}. Aquí explicaréis qué hace especial este servidor, para qué tipo de jugador está pensado y cualquier detalle de la configuración que merezca contarse.
 
 Se escribe en **Markdown**: puedes usar negritas, listas, enlaces y varios párrafos.
