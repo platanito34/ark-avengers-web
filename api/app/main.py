@@ -1,6 +1,6 @@
 """
-API PÚBLICA DE CAZAMOJITOS (ARK)
-================================
+API PÚBLICA DE LOS SERVIDORES DE ARK
+====================================
 Arrancar en desarrollo (desde la carpeta api/):
     uvicorn app.main:app --reload
 
@@ -39,7 +39,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Cazamojitos ARK — API pública",
+    title="Servidores de ARK — API pública",
     version="0.1.0",
     description="Estado público de los servidores. Solo lectura.",
     lifespan=lifespan,

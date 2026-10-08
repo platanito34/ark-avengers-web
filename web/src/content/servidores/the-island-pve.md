@@ -15,7 +15,7 @@ rates:
   recoleccion: 4
   cria: 10
 conexion:
-  nombreEnBuscador: Cazamojitos PvE The Island
+  nombreEnBuscador: "{nombre} PvE The Island"
   plataformas: [PC, Xbox, PlayStation]
 caracteristicas:
   - Transferencias activas dentro del clúster Principal

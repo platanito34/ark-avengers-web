@@ -4,7 +4,7 @@ import PageHeader from "../components/PageHeader.astro";
 import { site } from "../config/site";
 import "../styles/pages/interior.css";
 ---
-<BaseLayout title="Comunidad" description="Discord, eventos y soporte de la comunidad de Cazamojitos.">
+<BaseLayout title="Comunidad" description={`Discord, eventos y soporte de la comunidad de ${site.name}.`}>
   <PageHeader
     title="Comunidad"
     intro="Casi todo pasa en nuestro Discord: avisos, eventos, ayuda y gente con la que jugar."

@@ -1,4 +1,7 @@
-# Cazamojitos — web de los servidores de ARK
+# Web de los servidores de ARK
+
+> El nombre del proyecto aún no está decidido. Se cambia solo en `web/src/config/site.ts`.
+> En los ficheros Markdown se escribe `{nombre}` y la web lo sustituye.
 
 ```
 web/   Web pública (Astro)          → lo que ven los jugadores

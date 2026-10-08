@@ -5,6 +5,7 @@
  */
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
+import { conNombre } from "./config/site";
 
 const servidores = defineCollection({
   // Una ficha por servidor. El nombre del fichero es el "slug" (aparece en la URL
@@ -28,7 +29,8 @@ const servidores = defineCollection({
       cria: z.number(),
     }),
     conexion: z.object({
-      nombreEnBuscador: z.string(),
+      // Puede llevar {nombre}: se sustituye por el nombre del proyecto (site.ts)
+      nombreEnBuscador: z.string().transform(conNombre),
       plataformas: z.array(z.enum(["PC", "Xbox", "PlayStation"])).default(["PC"]),
       contrasena: z.boolean().default(false),
     }),

@@ -13,7 +13,7 @@ rates:
   recoleccion: 4
   cria: 10
 conexion:
-  nombreEnBuscador: Cazamojitos PvE Aberration
+  nombreEnBuscador: "{nombre} PvE Aberration"
   plataformas: [PC, Xbox, PlayStation]
 caracteristicas: []
 mods: []

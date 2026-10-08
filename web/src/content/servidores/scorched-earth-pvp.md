@@ -14,7 +14,7 @@ rates:
   recoleccion: 3
   cria: 5
 conexion:
-  nombreEnBuscador: Cazamojitos PvP Scorched
+  nombreEnBuscador: "{nombre} PvP Scorched"
   plataformas: [PC]
 caracteristicas:
   - Raids solo en franjas horarias anunciadas

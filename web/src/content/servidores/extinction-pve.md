@@ -13,7 +13,7 @@ rates:
   recoleccion: 4
   cria: 10
 conexion:
-  nombreEnBuscador: Cazamojitos PvE Extinction
+  nombreEnBuscador: "{nombre} PvE Extinction"
   plataformas: [PC]
   contrasena: true
 caracteristicas: []

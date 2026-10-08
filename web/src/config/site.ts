@@ -3,7 +3,9 @@
  * Nombre, enlace de Discord y menú: se cambian aquí y afectan a todas las páginas.
  */
 export const site = {
-  name: "Cazamojitos",
+  // NOMBRE PROVISIONAL: es el único sitio donde se escribe el nombre del proyecto.
+  // En los ficheros Markdown no se escribe a mano: se pone {nombre} y se sustituye solo.
+  name: "Comunidad ARK",
   description:
     "Servidores de ARK: Survival Ascended con estado en directo, configuración clara y una comunidad activa en Discord.",
 
@@ -21,3 +23,8 @@ export const site = {
   // Imagen por defecto para las vistas previas en Discord y redes (jpg/png, no svg)
   ogImage: "/img/hero.jpg",
 };
+
+/** Sustituye {nombre} por el nombre del proyecto (para textos escritos en Markdown). */
+export function conNombre(texto: string): string {
+  return texto.replaceAll("{nombre}", site.name);
+}

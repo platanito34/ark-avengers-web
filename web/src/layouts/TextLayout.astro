@@ -4,16 +4,18 @@
  * En el .md basta con poner en la cabecera:
  *   layout: ../layouts/TextLayout.astro
  *   title: ...
- *   intro: ...
+ *   intro: ...      (puede llevar {nombre}: se sustituye por el nombre del proyecto)
  */
 import BaseLayout from "./BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import { conNombre } from "../config/site";
 import "../styles/pages/interior.css";
 
 const { frontmatter } = Astro.props;
+const intro = frontmatter.intro ? conNombre(frontmatter.intro) : undefined;
 ---
-<BaseLayout title={frontmatter.title} description={frontmatter.intro}>
-  <PageHeader title={frontmatter.title} intro={frontmatter.intro} />
+<BaseLayout title={frontmatter.title} description={intro}>
+  <PageHeader title={frontmatter.title} intro={intro} />
   <section class="page-body">
     <div class="container">
       {frontmatter.provisional && (

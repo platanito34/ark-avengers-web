@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/TextLayout.astro
 title: Proyecto
-intro: Quiénes somos, cómo empezó Cazamojitos y qué queremos construir.
+intro: Quiénes somos, cómo empezó {nombre} y qué queremos construir.
 # Quita esta línea cuando el texto sea definitivo:
 provisional: true
 ---
