@@ -13,41 +13,42 @@
 #
 # Aquí NO van contraseñas ni claves: esas van en .env
 #
-# ⚠️ DATOS DE EJEMPLO. Los server_id son inventados.
+# server_id: identificador corto de cada servidor en el panel de Pterodactyl.
 # =============================================================================
 
 servers:
-  the-island-pve:
+  # [ESP] PVE X10 ARK AVENGERS - GENESIS 1
+  genesis-1:
     sources:
       - type: pterodactyl
-        server_id: "1a7ce997"
-      - type: mock            # cuando exista: type: ark_rcon (jugadores reales)
+        server_id: "27444bb8"
 
-  scorched-earth-pvp:
+  # [ESP] PVE X10 ARK AVENGERS - RAGNAROK
+  ragnarok:
     sources:
       - type: pterodactyl
-        server_id: "5b2e04f1"
-      - type: mock
+        server_id: "b7e24f5b"
 
-  the-center-pve:
+  # [ESP] PVE X10 ARK AVENGERS - ASTRAEOS
+  astraeos:
     sources:
       - type: pterodactyl
-        server_id: "c93d7a20"
-      - type: mock
+        server_id: "46dd84a5"
 
-  aberration-pve:
-    maintenance: true
+  # [ESP] PVE X10 ARK AVENGERS - THE ISLAND
+  the-island:
     sources:
       - type: pterodactyl
-        server_id: "e41b88d6"
-      - type: mock
+        server_id: "1a307053"
 
-  # Ejemplo de servidor que NO está en Pterodactyl (p. ej. en Windows Server).
-  # Su estado vendrá solo del juego.
-  extinction-pve:
+  # [ESP] PVE X10 ARK AVENGERS - LOST COLONY
+  lost-colony:
     sources:
-      - type: mock
-      # - type: ark_rcon
-      #   host_env: EXTINCTION_RCON_HOST
-      #   port_env: EXTINCTION_RCON_PORT
-      #   password_env: EXTINCTION_RCON_PASSWORD
+      - type: pterodactyl
+        server_id: "fd91e839"
+
+  # [ESP] PVE X10 ARK AVENGERS - ABERRATION
+  aberration:
+    sources:
+      - type: pterodactyl
+        server_id: "ff13312c"

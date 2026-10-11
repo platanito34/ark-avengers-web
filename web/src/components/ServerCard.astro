@@ -19,8 +19,8 @@ const href = `/servidores/${server.id}/`;
   </div>
   <div class="server-card__body">
     <div>
-      <p class="server-card__map">{d.mapa}</p>
-      <h3 class="server-card__title">{d.nombre}</h3>
+      <h3 class="server-card__title">{d.mapa}</h3>
+      <p class="server-card__fullname">{d.conexion.nombreEnBuscador}</p>
     </div>
     <div class="players">
       <div class="players__row">
@@ -34,6 +34,6 @@ const href = `/servidores/${server.id}/`;
         <div><dt>{label}</dt><dd>x{d.rates[key]}</dd></div>
       ))}
     </dl>
-    <a class="btn btn--quiet btn--sm" href={href} aria-label={`Ver servidor ${d.nombre}`}>Ver servidor</a>
+    <a class="btn btn--quiet btn--sm" href={href} aria-label={`Ver servidor ${d.mapa}`}>Ver servidor</a>
   </div>
 </article>

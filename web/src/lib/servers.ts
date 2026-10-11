@@ -6,7 +6,7 @@ export type Server = CollectionEntry<"servidores">;
 /** Servidores visibles, ordenados por el campo `orden` */
 export async function getVisibleServers(): Promise<Server[]> {
   const all = await getCollection("servidores", (s) => s.data.visible);
-  return all.sort((a, b) => a.data.orden - b.data.orden || a.data.nombre.localeCompare(b.data.nombre));
+  return all.sort((a, b) => a.data.orden - b.data.orden || a.data.mapa.localeCompare(b.data.mapa));
 }
 
 export async function getFeaturedServers(limit = 3): Promise<Server[]> {

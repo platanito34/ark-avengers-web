@@ -1,0 +1,45 @@
+# =============================================================================
+# SERVIDORES DE PRUEBA (solo para los tests)
+# -----------------------------------------------------------------------------
+# Cubren todos los casos. Los server_id apuntan a mock/pterodactyl/<id>.json y
+# los datos de jugadores salen de mock/status.yaml.
+# Los servidores reales están en api/servers.yaml.
+# =============================================================================
+
+servers:
+  # Pterodactyl "running" + jugadores de la fuente mock
+  prueba-online:
+    sources:
+      - type: pterodactyl
+        server_id: "1a7ce997"
+      - type: mock
+
+  # Pterodactyl "starting"
+  prueba-arrancando:
+    sources:
+      - type: pterodactyl
+        server_id: "c93d7a20"
+
+  # Pterodactyl "offline"
+  prueba-apagado:
+    sources:
+      - type: pterodactyl
+        server_id: "e41b88d6"
+
+  # Mantenimiento: manda sobre lo que diga Pterodactyl ("running")
+  prueba-mantenimiento:
+    maintenance: true
+    sources:
+      - type: pterodactyl
+        server_id: "5b2e04f1"
+
+  # Servidor fuera de Pterodactyl: solo datos del juego (aquí, la fuente mock)
+  prueba-solo-juego:
+    sources:
+      - type: mock
+
+  # Ninguna fuente responde (no existe su .json): debe salir unknown, nunca offline
+  prueba-sin-datos:
+    sources:
+      - type: pterodactyl
+        server_id: "00000000"

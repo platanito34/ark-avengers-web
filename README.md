@@ -87,8 +87,8 @@ la web y el backend tienen exactamente los mismos servidores.
 | Datos de prueba del backend             | `api/mock/status.yaml`                               |
 | Dirección pública de la web             | `web/astro.config.mjs` (`site`)                      |
 
-El nombre del fichero de cada servidor (`the-island-pve.md`) es su **slug**: aparece en la URL
-(`/servidores/the-island-pve/`) y es la clave en `api/servers.yaml`. Elígelo bien antes de publicar:
+El nombre del fichero de cada servidor (`the-island.md`) es su **slug**: aparece en la URL
+(`/servidores/the-island/`) y es la clave en `api/servers.yaml`. Elígelo bien antes de publicar:
 cambiarlo después rompe los enlaces compartidos.
 
 ---

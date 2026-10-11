@@ -128,8 +128,9 @@
   gap: 1.25rem;
   padding: 1.4rem 1.5rem 1.6rem;
 }
-.server-card__map { color: var(--c-amber); font-weight: 600; font-size: .95rem; margin-bottom: .35rem; }
 .server-card__title { font-size: 2rem; }
+/* Nombre completo del servidor bajo el mapa (es largo: puede ocupar dos líneas) */
+.server-card__fullname { margin-top: .4rem; color: var(--c-amber); font-weight: 600; font-size: .9rem; line-height: 1.35; }
 
 .players__row { display: flex; justify-content: space-between; font-size: .95rem; color: var(--c-muted); }
 .players__row strong { color: var(--c-bone); font-weight: 600; }

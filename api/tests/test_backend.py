@@ -77,12 +77,21 @@ def test_fixtures_de_la_web_cumplen_el_contrato():
 
 
 def test_servidores_backend_y_web_coinciden():
+    # Compara con los servidores REALES (api/servers.yaml), no con los de prueba
     web = {p.stem for p in (ROOT / "web" / "src" / "content" / "servidores").glob("*.md")}
-    api = set(load_servers(get_settings().servers_file))
+    api = set(load_servers(API_DIR / "servers.yaml"))
     assert web == api, f"Solo en la web: {web - api} | Solo en el backend: {api - web}"
 
 
 # ---------- API ----------
+def test_los_tests_no_usan_la_configuracion_real():
+    # Ver conftest.py: nada de api/.env ni del panel
+    settings = get_settings()
+    assert settings.pterodactyl_mode == "simulated"
+    assert settings.pterodactyl_api_key == ""
+    assert settings.servers_file.name == "servers_prueba.yaml"
+
+
 def test_api_responde():
     from app.main import app
 
@@ -90,13 +99,21 @@ def test_api_responde():
         r = client.get("/api/status")
         assert r.status_code == 200
         data = StatusResponse.model_validate(r.json())
-        states = {s.slug: s.state for s in data.servers}
-        assert states["the-island-pve"] == "online"
-        assert states["the-center-pve"] == "starting"
-        assert states["aberration-pve"] == "maintenance"
-        assert states["extinction-pve"] == "offline"
+        by_slug = {s.slug: s for s in data.servers}
+        states = {slug: s.state for slug, s in by_slug.items()}
+        assert states == {
+            "prueba-online": "online",
+            "prueba-arrancando": "starting",
+            "prueba-apagado": "offline",
+            "prueba-mantenimiento": "maintenance",
+            "prueba-solo-juego": "offline",
+            "prueba-sin-datos": "unknown",
+        }
+        # Jugadores: de la fuente mock (con su pequeña variación aleatoria)
+        assert by_slug["prueba-online"].players.max == 70
+        assert 36 <= by_slug["prueba-online"].players.current <= 40
 
-        assert client.get("/api/status/the-island-pve").status_code == 200
+        assert client.get("/api/status/prueba-online").status_code == 200
         assert client.get("/api/status/no-existe").status_code == 404
 
         # Nada interno debe salir en la respuesta pública

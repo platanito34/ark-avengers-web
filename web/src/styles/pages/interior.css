@@ -71,8 +71,9 @@
 
 .ficha-hero__back { display: inline-block; margin-bottom: 1.5rem; color: var(--c-muted); font-weight: 500; text-decoration: none; }
 .ficha-hero__back:hover { color: var(--c-bone); }
-.ficha-hero__map { color: var(--c-amber); font-weight: 600; font-size: 1.1rem; }
-.ficha-hero h1 { margin-top: .4rem; font-size: clamp(3rem, 9vw, 6.5rem); font-weight: 900; text-transform: uppercase; line-height: .85; }
+.ficha-hero h1 { font-size: clamp(3rem, 9vw, 6.5rem); font-weight: 900; text-transform: uppercase; line-height: .85; }
+/* Nombre completo del servidor bajo el mapa */
+.ficha-hero__fullname { margin-top: .75rem; color: var(--c-amber); font-weight: 600; font-size: clamp(1rem, 1.6vw, 1.15rem); line-height: 1.35; }
 .ficha-hero__meta { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 1.5rem; }
 .tag {
   padding: .3rem .7rem;
@@ -121,11 +122,15 @@
   font-family: var(--f-display); font-weight: 800; font-size: 1.35rem; line-height: 1.2;
   color: var(--c-amber);
 }
-.copy-field { grid-column: 2; display: flex; margin-top: .4rem; border: 1px solid var(--c-line); }
-.copy-field code { flex: 1; min-width: 0; padding: .55rem .7rem; font-family: var(--f-body); font-weight: 600; font-size: .95rem; overflow-wrap: anywhere; color: var(--c-bone); }
+/* Si el nombre no cabe al lado del botón, el botón baja a su propia fila
+   (el nombre solo se parte entre palabras, nunca a media palabra) */
+.copy-field { grid-column: 2; display: flex; flex-wrap: wrap; margin-top: .4rem; border: 1px solid var(--c-line); }
+.copy-field code { flex: 999 1 13rem; min-width: 0; padding: .55rem .7rem; font-family: var(--f-body); font-weight: 600; font-size: .95rem; overflow-wrap: break-word; color: var(--c-bone); }
 .copy-field button {
+  flex: 1 0 auto; justify-content: center;
   display: inline-flex; align-items: center; gap: .35rem;
-  padding: 0 .8rem; border: 0; border-left: 1px solid var(--c-line);
+  padding: .55rem .8rem; border: 0;
+  box-shadow: -1px -1px 0 var(--c-line); /* línea a la izquierda o arriba, según esté al lado o debajo */
   background: transparent; color: var(--c-muted); font: 600 .85rem var(--f-body); cursor: pointer;
 }
 .copy-field button:hover { color: var(--c-bone); }

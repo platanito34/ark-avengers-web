@@ -1,33 +1,17 @@
 # Datos de prueba de la fuente "mock".
 # Simulan lo que en producción devolverá el juego (RCON): jugadores y versión.
 # Puedes editar este fichero con el backend en marcha: se relee en cada consulta.
+#
+# Los usan los tests (servidores de tests/servers_prueba.yaml).
 
 servers:
-  the-island-pve:
+  prueba-online:
     online: true
     players: 38
     players_max: 70
     version: "v54.3"
 
-  scorched-earth-pvp:
-    online: true
-    players: 21
-    players_max: 50
-    version: "v54.3"
-
-  the-center-pve:
-    online: true
-    players: 0
-    players_max: 70
-    version: "v54.3"
-
-  aberration-pve:
-    online: true
-    players: 12
-    players_max: 70
-    version: "v54.3"
-
-  extinction-pve:
+  prueba-solo-juego:
     online: false
     players: 0
     players_max: 70

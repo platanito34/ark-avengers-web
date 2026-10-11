@@ -12,8 +12,7 @@ const servidores = defineCollection({
   // y es la clave que usa el backend en servers.yaml).
   loader: glob({ pattern: "*.md", base: "./src/content/servidores" }),
   schema: z.object({
-    nombre: z.string(),
-    mapa: z.string(),
+    mapa: z.string(), // título grande de la tarjeta y de la ficha
     modo: z.enum(["PvE", "PvP"]),
     resumen: z.string().max(160),
     imagen: z.string(), // ruta dentro de public/, p. ej. /img/servidores/the-island.jpg
@@ -29,6 +28,7 @@ const servidores = defineCollection({
       cria: z.number(),
     }),
     conexion: z.object({
+      // Nombre completo del servidor (igual que su SessionName). Sale bajo el título.
       // Puede llevar {nombre}: se sustituye por el nombre del proyecto (site.ts)
       nombreEnBuscador: z.string().transform(conNombre),
       plataformas: z.array(z.enum(["PC", "Xbox", "PlayStation"])).default(["PC"]),

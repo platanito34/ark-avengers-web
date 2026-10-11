@@ -28,15 +28,15 @@ const rules = d.normas
   .sort((a, b) => a.data.orden - b.data.orden);
 const renderedRules = await Promise.all(rules.map(async (r) => ({ rule: r, ...(await render(r)) })));
 ---
-<BaseLayout title={`${d.nombre} (${d.mapa})`} description={d.resumen} image={d.imagen} transparentHeader>
+<BaseLayout title={d.mapa} description={d.resumen} image={d.imagen} transparentHeader>
   <div data-live-slug={server.id} data-max-players={d.jugadoresMax}>
 
     <section class="ficha-hero">
       <div class="ficha-hero__media"><img src={d.imagen} alt="" width="1280" height="720"></div>
       <div class="container">
         <a class="ficha-hero__back" href="/servidores/">Todos los servidores</a>
-        <p class="ficha-hero__map">{d.mapa}</p>
-        <h1>{d.nombre}</h1>
+        <h1>{d.mapa}</h1>
+        <p class="ficha-hero__fullname">{d.conexion.nombreEnBuscador}</p>
         <div class="ficha-hero__meta">
           <span class="status" data-live="chip" data-state="pending">{STATE_LABELS.pending}</span>
           <span class="tag">{d.modo}</span>

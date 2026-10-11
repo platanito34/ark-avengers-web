@@ -1,7 +1,7 @@
 {
   "servers": [
     {
-      "slug": "the-island-pve",
+      "slug": "the-island",
       "state": "online",
       "players": {
         "current": 70,
@@ -11,7 +11,7 @@
       "checked_at": "2026-01-01T12:00:00Z"
     },
     {
-      "slug": "scorched-earth-pvp",
+      "slug": "genesis-1",
       "state": "offline",
       "players": {
         "current": null,
@@ -21,7 +21,7 @@
       "checked_at": "2026-01-01T12:00:00Z"
     },
     {
-      "slug": "the-center-pve",
+      "slug": "ragnarok",
       "state": "starting",
       "players": {
         "current": null,
@@ -31,7 +31,7 @@
       "checked_at": "2026-01-01T12:00:00Z"
     },
     {
-      "slug": "aberration-pve",
+      "slug": "aberration",
       "state": "maintenance",
       "players": {
         "current": null,
@@ -41,7 +41,7 @@
       "checked_at": "2026-01-01T12:00:00Z"
     },
     {
-      "slug": "extinction-pve",
+      "slug": "astraeos",
       "state": "unknown",
       "players": {
         "current": null,
@@ -49,6 +49,16 @@
       },
       "version": null,
       "checked_at": null
+    },
+    {
+      "slug": "lost-colony",
+      "state": "online",
+      "players": {
+        "current": 70,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
     }
   ],
   "generated_at": "2026-01-01T12:00:00Z"
