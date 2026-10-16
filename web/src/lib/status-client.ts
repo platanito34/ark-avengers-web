@@ -5,13 +5,19 @@
  *   PUBLIC_STATUS_SOURCE=fixtures -> usa fixtures/status/*.json (sin backend)
  *   PUBLIC_STATUS_SOURCE=api      -> llama a PUBLIC_API_URL/api/status
  *
+ * Valores por defecto (si no hay web/.env):
+ *   - Producción (npm run build): API real, con ruta relativa "/api/status".
+ *     La web y la API están bajo el mismo dominio (Caddy envía /api/* a la API).
+ *   - Desarrollo (npm run dev): datos de prueba y API en http://localhost:8000.
+ *
  * La web nunca habla con Pterodactyl ni con los servidores de juego:
  * solo con nuestro backend.
  */
 import type { StatusResponse } from "./status-types";
 
-const SOURCE = import.meta.env.PUBLIC_STATUS_SOURCE ?? "fixtures";
-const API_URL = (import.meta.env.PUBLIC_API_URL ?? "http://localhost:8000").replace(/\/$/, "");
+const PROD = import.meta.env.PROD;
+const SOURCE = import.meta.env.PUBLIC_STATUS_SOURCE || (PROD ? "api" : "fixtures");
+const API_URL = (import.meta.env.PUBLIC_API_URL ?? (PROD ? "" : "http://localhost:8000")).replace(/\/$/, "");
 const DEFAULT_FIXTURE = import.meta.env.PUBLIC_STATUS_FIXTURE ?? "normal";
 
 const fixtures = import.meta.glob<StatusResponse>("../../fixtures/status/*.json", {

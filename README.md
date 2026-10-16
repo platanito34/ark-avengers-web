@@ -86,7 +86,8 @@ la web y el backend tienen exactamente los mismos servidores.
 | Imágenes                                | `web/public/img/` (usa .jpg o .webp, no .svg: Discord no muestra SVG en las vistas previas) |
 | De dónde sale el estado de cada servidor| `api/servers.yaml`                                   |
 | Datos de prueba del backend             | `api/mock/status.yaml`                               |
-| Dirección pública de la web             | `web/astro.config.mjs` (`site`)                      |
+| Dirección pública de la web             | `web/astro.config.mjs` (`site`, o variable `SITE_URL`) |
+| Publicar (Pterodactyl + Caddy)          | `DEPLOY.md`                                          |
 
 El nombre del fichero de cada servidor (`the-island.md`) es su **slug**: aparece en la URL
 (`/servidores/the-island/`) y es la clave en `api/servers.yaml`. Elígelo bien antes de publicar:
@@ -134,6 +135,10 @@ Fichero nuevo en `api/app/sources/`, registrarlo en `api/app/sources/__init__.py
 `api/app/sources/base.py` explica el formato.
 
 ---
+
+## Publicar
+
+Los pasos para crear los servidores en Pterodactyl y configurar Caddy están en [DEPLOY.md](DEPLOY.md).
 
 ## Seguridad
 

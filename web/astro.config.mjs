@@ -3,9 +3,10 @@ import { defineConfig } from "astro/config";
 import { remarkNombre } from "./src/lib/remark-nombre";
 
 export default defineConfig({
-  // Dirección pública definitiva de la web. Se usa para las vistas previas
-  // de Discord/redes (las imágenes necesitan la URL completa). Cámbiala al publicar.
-  site: "https://example.com",
+  // Dirección pública de la web. Se usa para las vistas previas de Discord/redes
+  // (las imágenes necesitan la URL completa). Se puede cambiar sin tocar el código
+  // con la variable de entorno SITE_URL (p. ej. en el servidor de Pterodactyl).
+  site: process.env.SITE_URL || "https://arkavengers.duckdns.org",
 
   // /servidores/ en vez de /servidores.html
   trailingSlash: "ignore",

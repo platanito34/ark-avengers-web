@@ -57,6 +57,8 @@ Navegador → Web estática (web/, Astro) → API propia (api/, FastAPI) → Pte
   - Escenarios de prueba: `?escenario=problemas | sin-jugadores | vacio | error`
 - API: `cd api` → `pip install -r requirements.txt` → `uvicorn app.main:app --reload` → http://localhost:8000/docs
 - Tests: `cd api && pytest`
+- Producción (en local, para probar): API `python api/run.py`; web `cd web && npm run build && node server.mjs`.
+  Ojo: `npm run build` en local lee `web/.env`; en el servidor no hay `web/.env` y se usa `/api/status`.
 - Windows: si PowerShell bloquea npm, usar `npm.cmd` o `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
 
 ## Próximos pasos previstos (no empezar sin que lo pida)
@@ -67,4 +69,16 @@ Navegador → Web estática (web/, Astro) → API propia (api/, FastAPI) → Pte
    - (Resuelto) Mods: lista común en `web/src/content/mods.yaml`, mantenida a mano (ID, nombre y URL de CurseForge). La web la muestra en orden alfabético.
 3. ~~Fuente `ark_rcon` para los jugadores conectados.~~ Hecho y probado con los servidores reales.
 4. ~~Conectar Pterodactyl (`PTERODACTYL_MODE=live`).~~ Hecho.
-5. Publicar la web estática y exponer la API de forma segura (sin abrir puertos de casa; p. ej. túnel).
+5. Publicar la web y la API: preparado, ver `DEPLOY.md`.
+
+## Producción (ver DEPLOY.md)
+- Dominio: `https://arkavengers.duckdns.org`. Caddy en una Raspberry Pi hace de proxy inverso con HTTPS:
+  `/api/*` → servidor de Pterodactyl "API" y todo lo demás → servidor "Web", ambos en 192.168.1.101.
+- En el router solo se abren los puertos 80 y 443, y solo hacia la Raspberry (Caddy). Los puertos de la API,
+  la web, el panel y RCON nunca se abren a Internet.
+- API: egg genérico de Python, arranca con `api/run.py` (sin --reload, 0.0.0.0, puerto `SERVER_PORT`, un solo proceso).
+  Su `api/.env` se crea a mano en el servidor; no está en GitHub.
+- Web: egg genérico de Node.js, arranca con `web/start.js` (npm ci → build → `web/server.mjs` sirve `web/dist`).
+  En producción la web llama a la API con la ruta relativa `/api/status` (mismo dominio, sin CORS).
+- `site` de Astro: `SITE_URL` o, por defecto, el dominio de DuckDNS (`web/astro.config.mjs`).
+- Los servidores descargan el código de GitHub (repositorio privado) con un token de solo lectura.
