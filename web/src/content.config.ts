@@ -4,7 +4,7 @@
  * escrito o le falta uno obligatorio, Astro avisa al arrancar o al compilar.
  */
 import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import { conNombre } from "./config/site";
 
 const servidores = defineCollection({
@@ -19,7 +19,7 @@ const servidores = defineCollection({
     visible: z.boolean().default(true),
     destacado: z.boolean().default(false),
     orden: z.number().default(100),
-    cluster: z.string().optional(),
+    cluster: z.string().transform(conNombre).optional(), // puede llevar {nombre}
     jugadoresMax: z.number().int().positive(),
     rates: z.object({
       xp: z.number(),
@@ -35,8 +35,17 @@ const servidores = defineCollection({
       contrasena: z.boolean().default(false),
     }),
     caracteristicas: z.array(z.string()).default([]),
-    mods: z.array(z.object({ nombre: z.string(), id: z.number().optional() })).default([]),
     normas: z.array(z.string()).default(["generales"]),
+  }),
+});
+
+// Mods: una sola lista, común a todos los servidores (src/content/mods.yaml).
+// El "id" de cada entrada es el ID del mod en CurseForge.
+const mods = defineCollection({
+  loader: file("src/content/mods.yaml"),
+  schema: z.object({
+    nombre: z.string(),            // "PENDIENTE" si todavía no se sabe
+    url: z.string().url().optional(), // solo si el enlace por ID no funciona
   }),
 });
 
@@ -48,4 +57,4 @@ const normas = defineCollection({
   }),
 });
 
-export const collections = { servidores, normas };
+export const collections = { servidores, normas, mods };

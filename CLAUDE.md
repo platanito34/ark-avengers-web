@@ -49,7 +49,7 @@ Navegador → Web estática (web/, Astro) → API propia (api/, FastAPI) → Pte
 - NO implementar sin permiso explícito: tienda, pagos, cuentas de usuario, login, alquiler de servidores, gestión de clientes, base de datos.
 - Antes de cambios grandes o de añadir dependencias, explicar el plan y esperar mi confirmación.
 - No soy programador experto: explica los cambios paso a paso y en lenguaje sencillo.
-- Todos los servidores, rates, mods, normas y textos actuales son DE EJEMPLO. No tratarlos como información real.
+- Los servidores, rates, normas y textos actuales son REALES. Lo marcado `PENDIENTE` o `PROVISIONAL` todavía no está decidido: no inventarlo.
 - No cambiar slugs sin avisar: forman parte de las URLs.
 
 ## Comandos
@@ -61,7 +61,10 @@ Navegador → Web estática (web/, Astro) → API propia (api/, FastAPI) → Pte
 
 ## Próximos pasos previstos (no empezar sin que lo pida)
 1. ~~Nombre centralizado en `site.ts`.~~ Hecho: ARK Avengers.
-2. Revisar textos y datos reales de los servidores.
+2. ~~Revisar textos y datos reales de los servidores.~~ Hecho. Quedan estas preguntas abiertas (no inventar la respuesta):
+   - Transferencias entre mapas: si se pueden pasar dinos, objetos y personajes, añadir a las fichas la característica "Transferencias de dinos, objetos y personajes entre los seis mapas".
+   - Sanciones: qué pasa si alguien incumple las normas (aviso, expulsión temporal, ban).
+   - Mods: lista común en `web/src/content/mods.yaml` (vacía de momento); decidir si se rellena a mano o se consulta automáticamente.
 3. ~~Fuente `ark_rcon` para los jugadores conectados.~~ Hecho y probado con los servidores reales.
 4. ~~Conectar Pterodactyl (`PTERODACTYL_MODE=live`).~~ Hecho.
 5. Publicar la web estática y exponer la API de forma segura (sin abrir puertos de casa; p. ej. túnel).

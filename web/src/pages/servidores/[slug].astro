@@ -21,6 +21,9 @@ const { server } = Astro.props;
 const d = server.data;
 const { Content } = await render(server);
 
+// Mods: lista común a todos los servidores (src/content/mods.yaml)
+const mods = await getCollection("mods");
+
 const allRules = await getCollection("normas");
 const rules = d.normas
   .map((id) => allRules.find((r) => r.id === id))
@@ -68,12 +71,20 @@ const renderedRules = await Promise.all(rules.map(async (r) => ({ rule: r, ...(a
 
         <section aria-labelledby="mods">
           <h2 id="mods">Mods</h2>
-          {d.mods.length > 0 ? (
+          {mods.length > 0 ? (
             <ul class="mods">
-              {d.mods.map((m) => <li>{m.nombre}{m.id && <span>ID {m.id}</span>}</li>)}
+              {mods.map((m) => (
+                <li>
+                  {m.data.nombre === "PENDIENTE"
+                    ? <span class="muted">Nombre pendiente</span>
+                    : <a class="text-link" href={m.data.url ?? `https://www.curseforge.com/projects/${m.id}`}
+                         target="_blank" rel="noopener">{m.data.nombre}</a>}
+                  <span>ID {m.id}</span>
+                </li>
+              ))}
             </ul>
           ) : (
-            <p class="muted">Este servidor funciona sin mods.</p>
+            <p class="muted">Lista de mods pendiente.</p>
           )}
         </section>
 

@@ -14,8 +14,8 @@ Navegador → Web (estática) → API propia → Pterodactyl / juego (RCON) / da
 
 La web **nunca** habla con Pterodactyl ni con los servidores de juego. Solo con la API.
 
-> ⚠️ Todos los servidores, textos, rates, mods y normas son **de ejemplo**.
-> Revísalos antes de publicar (los ficheros llevan la marca "DATOS DE EJEMPLO" o "TEXTO PROVISIONAL").
+> Los servidores, textos, rates y normas son los reales. Lo que aún falta por decidir lleva la
+> marca `PENDIENTE` o `PROVISIONAL` en su fichero.
 
 ---
 
@@ -78,6 +78,7 @@ la web y el backend tienen exactamente los mismos servidores.
 | Nombre, enlace de Discord, menú         | `web/src/config/site.ts`                             |
 | Un servidor (texto, rates, mods…)       | `web/src/content/servidores/<slug>.md`               |
 | Añadir un servidor                      | Nuevo `.md` en esa carpeta **y** su entrada en `api/servers.yaml` |
+| Mods (comunes a todos los servidores)   | `web/src/content/mods.yaml`                          |
 | Normas                                  | `web/src/content/normas/*.md`                        |
 | Página Proyecto                         | `web/src/pages/proyecto.md`                          |
 | Página Comunidad                        | `web/src/pages/comunidad.astro`                      |

@@ -1,0 +1,14 @@
+# =============================================================================
+# MODS (comunes a los seis servidores)
+# -----------------------------------------------------------------------------
+# Una entrada por mod, en el orden en que quieras que salgan en la web:
+#
+#   - id: "928548"                 # ID del mod en CurseForge (entre comillas)
+#     nombre: Nombre del mod       # si no se sabe todavía: PENDIENTE
+#     # url: https://...           # opcional: solo si el enlace automático falla
+#
+# El enlace a CurseForge se genera solo a partir del ID.
+# Mientras la lista esté vacía, las fichas dicen "Lista de mods pendiente".
+# =============================================================================
+
+[]

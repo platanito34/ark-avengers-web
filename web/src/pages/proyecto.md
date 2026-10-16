@@ -1,23 +1,23 @@
 ---
 layout: ../layouts/TextLayout.astro
 title: Proyecto
-intro: Quiénes somos, cómo empezó {nombre} y qué queremos construir.
-# Quita esta línea cuando el texto sea definitivo:
-provisional: true
+intro: Somos jugadores españoles de ARK que se cansaron de buscar servidores activos. Así que creamos los nuestros.
 ---
 
 ## Quiénes somos
 
-Aquí irá la presentación del equipo: cuántos sois, qué hace cada uno y por qué os dedicáis a esto.
+{nombre} lo lleva un pequeño equipo. El proyecto lo llevamos 5 personas, 3 estudiantes de informatica, que se encargan de mantener los servidores siempre operativos y en el mejor estado posible. El resto del equipo se ocupa del marketing, la difusión y de aportar ideas.
 
 ## Cómo empezó
 
-La historia de {nombre}: cuándo abristeis el primer servidor, para quién era y cómo fue creciendo la comunidad.
+Siempre nos pasaba lo mismo: queríamos jugar a ARK en un servidor español con gente activa y no lo encontrábamos. Así que empezamos a montar nuestros propios servidores.
 
-## Qué ofrecemos
+Con el tiempo vimos que mucha más gente tenía el mismo problema, y decidimos abrirlos a todo el mundo y convertirlos en una comunidad.
 
-Lo que encontrará un jugador en vuestros servidores: tipo de configuración, cómo se gestionan los reinicios y las actualizaciones, qué soporte hay y en qué horarios.
+## Qué buscamos
 
-## Nuestra filosofía
+Servidores activos, en español y con gente con la que jugar. Hoy tenemos seis mapas PvE x10 en un mismo clúster y con crossplay entre PC, Xbox y PlayStation.
 
-Los principios con los que lleváis los servidores: por ejemplo, cómo tratáis los problemas entre jugadores, qué tipo de ambiente buscáis y qué no vais a permitir.
+## Lo que viene
+
+Queremos seguir creciendo: más servidores, incluidos servidores PvP, y eventos para la comunidad.

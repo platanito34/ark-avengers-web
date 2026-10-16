@@ -83,29 +83,28 @@ const initial = [...destacados, ...servers.map((s) => s.id).filter((id) => !dest
     <div class="container about__grid">
       <div class="about__intro">
         <h2 id="about-title">Más que un sitio donde conectarse</h2>
-        <!-- TEXTO PROVISIONAL -->
-        <p>{site.name} nació como una comunidad de jugadores. Aquí tienes los servidores, quién hay detrás y dónde encontrarnos.</p>
+        <p>{site.name} nació porque no encontrábamos servidores españoles activos. Hoy tenemos seis mapas PvE en un mismo clúster, con crossplay y una comunidad que no para de crecer.</p>
       </div>
       <ul class="pillars">
         <li class="pillar">
           <Icon name="servers" class="pillar__icon" />
           <div>
             <h3><a href="/servidores/">Servidores</a></h3>
-            <p>Mapas, modos, rates, mods y normas de cada servidor, con su estado y jugadores en directo.</p>
+            <p>Seis mapas PvE x10 en un mismo clúster, con su estado y jugadores en directo.</p>
           </div>
         </li>
         <li class="pillar">
           <Icon name="flag" class="pillar__icon" />
           <div>
             <h3><a href="/proyecto/">Proyecto</a></h3>
-            <p>Quiénes somos, cómo empezó todo, qué queremos ofrecer y cómo cuidamos los servidores.</p>
+            <p>Quiénes somos, cómo empezó todo y hacia dónde vamos.</p>
           </div>
         </li>
         <li class="pillar">
           <Icon name="people" class="pillar__icon" />
           <div>
             <h3><a href="/comunidad/">Comunidad</a></h3>
-            <p>Discord, eventos, ayuda entre jugadores y soporte del equipo de administración.</p>
+            <p>Discord, ayuda de los admins y, muy pronto, eventos.</p>
           </div>
         </li>
       </ul>
@@ -120,7 +119,7 @@ const initial = [...destacados, ...servers.map((s) => s.id).filter((id) => !dest
     <div class="container community__inner">
       <div class="community__text">
         <h2 id="community-title">La partida sigue en Discord</h2>
-        <p>Avisos de reinicios, eventos, soporte y gente con la que formar tribu.</p>
+        <p>Soporte de los admins, gente con la que jugar y, muy pronto, eventos.</p>
       </div>
       <div class="community__cta">
         <a class="btn btn--discord btn--lg" href={site.discordUrl} target="_blank" rel="noopener">Únete al Discord</a>

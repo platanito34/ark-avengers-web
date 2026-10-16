@@ -4,31 +4,30 @@ import PageHeader from "../components/PageHeader.astro";
 import { site } from "../config/site";
 import "../styles/pages/interior.css";
 ---
-<BaseLayout title="Comunidad" description={`Discord, eventos y soporte de la comunidad de ${site.name}.`}>
+<BaseLayout title="Comunidad" description={`Discord, soporte y comunidad de ${site.name}.`}>
   <PageHeader
     title="Comunidad"
-    intro="Casi todo pasa en nuestro Discord: avisos, eventos, ayuda y gente con la que jugar."
+    intro="Nuestro Discord es el punto de encuentro: allí puedes hablar con el resto de jugadores y con los admins."
   />
 
   <section class="page-body">
     <div class="container">
-      <!-- TEXTOS PROVISIONALES: revisa que todo esto sea cierto antes de publicar -->
       <div class="feature-grid">
         <div class="feature">
-          <h3>Avisos</h3>
-          <p>Reinicios, mantenimientos y actualizaciones, con antelación.</p>
+          <h3>Soporte</h3>
+          <p>Los admins te ayudan por Discord o dentro del juego.</p>
+        </div>
+        <div class="feature">
+          <h3>Comunidad española</h3>
+          <p>Jugadores de España con los que formar tribu y jugar.</p>
         </div>
         <div class="feature">
           <h3>Eventos</h3>
-          <p>Actividades de comunidad dentro y fuera de los servidores.</p>
+          <p>Próximamente. Los anunciaremos en Discord.</p>
         </div>
         <div class="feature">
-          <h3>Soporte</h3>
-          <p>Un canal para pedir ayuda al equipo de administración.</p>
-        </div>
-        <div class="feature">
-          <h3>Tribus</h3>
-          <p>Un sitio donde buscar compañeros para empezar o reforzar tu tribu.</p>
+          <h3>Nuevos servidores</h3>
+          <p>Próximamente, también servidores PvP.</p>
         </div>
       </div>
 
@@ -36,8 +35,8 @@ import "../styles/pages/interior.css";
         <div>
           <h2>Cómo pedir ayuda</h2>
           <ol class="steps">
-            <li>Entra en el Discord y lee el canal de bienvenida.</li>
-            <li>Abre una consulta en el canal de soporte.</li>
+            <li><span>Entra en nuestro <a class="text-link" href={site.discordUrl} target="_blank" rel="noopener">Discord</a>.</span></li>
+            <li>Habla con un admin por Discord o escríbele dentro del juego.</li>
             <li>Indica en qué servidor juegas, tu nombre en el juego y qué ha pasado.</li>
           </ol>
         </div>

@@ -11,8 +11,7 @@ export const site = {
   description:
     "Servidores de ARK: Survival Ascended con estado en directo, configuración clara y una comunidad activa en Discord.",
 
-  // Sustitúyelo por la invitación real
-  discordUrl: "https://discord.gg/TU-CODIGO",
+  discordUrl: "https://discord.gg/gfJsBTgYm",
 
   nav: [
     { label: "Inicio", href: "/" },
