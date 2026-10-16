@@ -144,9 +144,32 @@
 .check-list li { display: grid; grid-template-columns: 1.25rem 1fr; gap: .75rem; color: #d8d2c4; }
 .check-list li::before { content: ""; width: .55rem; height: .55rem; margin-top: .55rem; background: var(--c-amber); transform: rotate(45deg); }
 
+/* Desplegable de mods (cerrado por defecto) */
+.mods-toggle { max-width: 34rem; }
+.mods-toggle summary {
+  --notch: 14px;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .85rem 1.1rem;
+  background: var(--c-basalt-2);
+  clip-path: polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%);
+  color: var(--c-amber); font-weight: 600;
+  cursor: pointer; list-style: none;
+  transition: color .15s ease;
+}
+.mods-toggle summary::-webkit-details-marker { display: none; }
+.mods-toggle summary:hover { color: var(--c-amber-hover); }
+/* El clip-path recorta el contorno exterior: el foco se dibuja por dentro */
+.mods-toggle summary:focus-visible { outline: 2px solid currentColor; outline-offset: -4px; }
+.mods-toggle summary svg { width: 1.25rem; height: 1.25rem; flex: none; transition: transform .2s ease; }
+.mods-toggle[open] summary svg { transform: rotate(180deg); }
+.mods-toggle__close, .mods-toggle[open] .mods-toggle__open { display: none; }
+.mods-toggle[open] .mods-toggle__close { display: inline; }
+.mods-toggle .mods { margin-top: .5rem; }
+
 .mods { list-style: none; border-top: 1px solid var(--c-line); max-width: 34rem; }
 .mods li { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem 0; border-bottom: 1px solid var(--c-line); }
 .mods span { color: var(--c-muted); font-size: .9rem; }
+.mods li > span:last-child { flex: none; white-space: nowrap; } /* el "ID 123456" no se parte */
 .muted { color: var(--c-muted); }
 
 .rules-block + .rules-block { margin-top: 2rem; }
