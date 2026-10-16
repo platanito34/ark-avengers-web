@@ -1,14 +1,112 @@
 # =============================================================================
 # MODS (comunes a los seis servidores)
 # -----------------------------------------------------------------------------
-# Una entrada por mod, en el orden en que quieras que salgan en la web:
+# Una entrada por mod, en cualquier orden (la web los ordena alfabéticamente):
 #
 #   - id: "928548"                 # ID del mod en CurseForge (entre comillas)
 #     nombre: Nombre del mod       # si no se sabe todavía: PENDIENTE
-#     # url: https://...           # opcional: solo si el enlace automático falla
+#     url: https://...             # página del mod en CurseForge
 #
-# El enlace a CurseForge se genera solo a partir del ID.
-# Mientras la lista esté vacía, las fichas dicen "Lista de mods pendiente".
+# Si falta "url", el enlace se genera a partir del ID.
+# Si la lista se queda vacía, las fichas dicen "Lista de mods pendiente".
 # =============================================================================
 
-[]
+- id: "961504"
+  nombre: "Browser button & QR code"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/tip4serv
+- id: "926259"
+  nombre: "Additions Ascended: Acrocanthosaurus"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/additions-ascended-acro
+- id: "928548"
+  nombre: "Shiny! Dinos Ascended"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/shiny-ascended
+- id: "928597"
+  nombre: "Automated Ark"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/automated-ark
+- id: "928708"
+  nombre: "Custom Dino Levels"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/custom-dino-levels
+- id: "928824"
+  nombre: "Moro's Indomitable Duo"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/moros-indomitable-duo
+- id: "929420"
+  nombre: "Super Spyglass Plus"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/super-spyglass-plus
+- id: "929800"
+  nombre: "TG Stacking Mod 1000-50"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/tg-stacking-mod-1000-50
+- id: "929912"
+  nombre: "Ez's Engram Unlocker (PC/Xbox/PS)"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/ez-engram-unlocker
+- id: "932770"
+  nombre: "TeleportersASA"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/asateleporter
+- id: "933447"
+  nombre: "Alfa Oceanic Platforms"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/alfaoceanicplataforms
+- id: "935408"
+  nombre: "Der Dino Finder"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/der-dino-finder
+- id: "929489"
+  nombre: "Draconic Chronicles (Crossplay)"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/draconic-chronicles
+- id: "942008"
+  nombre: "Dino Painter"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/dino-painter
+- id: "942024"
+  nombre: "Dino Depot"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/dino-depot
+- id: "942339"
+  nombre: "JVH Pickup Tool"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/jvh-pickup-tool
+- id: "947835"
+  nombre: "Human NPCs ASA"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/human_npcs_asa
+- id: "963051"
+  nombre: "Nanoh's Ascended Equipment"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/nanohs-ascended-accessories
+- id: "970540"
+  nombre: "Paleo ARK - Evolution | Apex Predators (Crossplay)"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/paleo-ark-evolution-apex-predators
+- id: "1019389"
+  nombre: "Net Pro"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/net-projectile
+- id: "1025966"
+  nombre: "Transferable Element, Tributes and Trophies"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/transferable-element-tributes-and-trophies
+- id: "1201667"
+  nombre: "Isle of Myths: Skyshroud Drakara"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/isle-of-myths-drakara
+- id: "1259284"
+  nombre: "Radiant Genesis"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/radiant-genesis
+- id: "1330214"
+  nombre: "B+ Spawners"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/b-spawners
+- id: "1382641"
+  nombre: "Paleo ARK - Evolution | Hard Hitting Herbivores"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/paleo-ark-evolution-hard-hitting-herbivores
+- id: "1412861"
+  nombre: "B+ Loot Editor"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/b-loot-editor
+- id: "933099"
+  nombre: "Super Cryo Storage"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/super-cryo-storage
+- id: "932975"
+  nombre: "Crazy's Crazy Ascended Potions"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/crazys-crazy-ascended-potions
+- id: "1612424"
+  nombre: "Better Ships"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/better-ships
+- id: "1677137"
+  nombre: "Xeno Shadowmane"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/xeno-shadowmane
+- id: "940975"
+  nombre: "Cybers Structures QoL+ (Crossplay)"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/cybers-structures
+- id: "1262693"
+  nombre: "Feras Immersive Tranqs"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/feras-immersive-tranqs
+- id: "974884"
+  nombre: "Runic Wyverns"
+  url: https://www.curseforge.com/ark-survival-ascended/mods/runic-wyverns

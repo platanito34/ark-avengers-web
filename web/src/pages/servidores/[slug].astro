@@ -21,8 +21,9 @@ const { server } = Astro.props;
 const d = server.data;
 const { Content } = await render(server);
 
-// Mods: lista común a todos los servidores (src/content/mods.yaml)
-const mods = await getCollection("mods");
+// Mods: lista común a todos los servidores (src/content/mods.yaml), por orden alfabético
+const mods = (await getCollection("mods")).sort((a, b) =>
+  a.data.nombre.localeCompare(b.data.nombre, "es", { sensitivity: "base" }));
 
 const allRules = await getCollection("normas");
 const rules = d.normas

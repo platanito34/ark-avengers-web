@@ -64,7 +64,7 @@ Navegador → Web estática (web/, Astro) → API propia (api/, FastAPI) → Pte
 2. ~~Revisar textos y datos reales de los servidores.~~ Hecho. Quedan estas preguntas abiertas (no inventar la respuesta):
    - Transferencias entre mapas: si se pueden pasar dinos, objetos y personajes, añadir a las fichas la característica "Transferencias de dinos, objetos y personajes entre los seis mapas".
    - Sanciones: qué pasa si alguien incumple las normas (aviso, expulsión temporal, ban).
-   - Mods: lista común en `web/src/content/mods.yaml` (vacía de momento); decidir si se rellena a mano o se consulta automáticamente.
+   - (Resuelto) Mods: lista común en `web/src/content/mods.yaml`, mantenida a mano (ID, nombre y URL de CurseForge). La web la muestra en orden alfabético.
 3. ~~Fuente `ark_rcon` para los jugadores conectados.~~ Hecho y probado con los servidores reales.
 4. ~~Conectar Pterodactyl (`PTERODACTYL_MODE=live`).~~ Hecho.
 5. Publicar la web estática y exponer la API de forma segura (sin abrir puertos de casa; p. ej. túnel).
