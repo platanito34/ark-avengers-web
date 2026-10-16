@@ -113,7 +113,8 @@ const renderedRules = await Promise.all(rules.map(async (r) => ({ rule: r, ...(a
             <div class="players__bar" aria-hidden="true"><span data-live="players-bar"></span></div>
           </div>
           <dl class="panel__list">
-            <div><dt>Versión</dt><dd data-live="version">–</dd></div>
+            <!-- Oculta hasta que alguna fuente dé la versión (la muestra live-status.ts) -->
+            <div data-live="version-row" hidden><dt>Versión</dt><dd data-live="version">–</dd></div>
           </dl>
           <p class="panel__note" data-live="checked">–</p>
         </section>

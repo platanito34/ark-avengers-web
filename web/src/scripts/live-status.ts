@@ -9,6 +9,7 @@
  *     data-live="players"           "38 / 70"
  *     data-live="players-bar"       barra de ocupación
  *     data-live="version"           versión del juego
+ *     data-live="version-row"       fila de la versión: oculta si no hay versión
  *     data-live="checked"           "Actualizado hace..."
  *   data-live-summary               panel de resumen de la portada
  *     data-summary="online|players|updated"
@@ -58,8 +59,12 @@ function renderServer(container: HTMLElement, status: ServerStatus | undefined) 
   const bar = container.querySelector<HTMLElement>('[data-live="players-bar"]');
   if (bar) bar.style.width = current !== null && max ? `${Math.min(100, (current / max) * 100)}%` : "0";
 
+  // La fila de versión solo se ve si alguna fuente la da (hoy ninguna lo hace)
+  const versionText = online && status?.version ? status.version : null;
   const version = container.querySelector('[data-live="version"]');
-  if (version) version.textContent = online && status?.version ? status.version : "–";
+  if (version) version.textContent = versionText ?? "–";
+  const versionRow = container.querySelector<HTMLElement>('[data-live="version-row"]');
+  if (versionRow) versionRow.hidden = versionText === null;
 
   const checked = container.querySelector('[data-live="checked"]');
   if (checked) checked.textContent = timeAgo(status?.checked_at ?? null);

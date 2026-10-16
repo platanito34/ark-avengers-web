@@ -113,6 +113,8 @@
 .panel__list > div { display: flex; justify-content: space-between; gap: 1rem; }
 .panel__list dt { color: var(--c-muted); }
 .panel__list dd { margin: 0; text-align: right; }
+/* Si todas las filas están ocultas (p. ej. sin versión), tampoco se ve la línea separadora */
+.panel__list:not(:has(> div:not([hidden]))) { display: none; }
 .panel__note { margin-top: .9rem; font-size: .85rem; color: var(--c-muted); }
 
 .steps { list-style: none; counter-reset: step; display: grid; gap: 1rem; }
