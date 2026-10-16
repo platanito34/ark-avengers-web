@@ -4,11 +4,13 @@ CONFIGURACIÓN DEL BACKEND
 - Valores generales y secretos: variables de entorno o fichero .env (ver .env.example).
 - Qué servidores existen y de dónde se saca su estado: servers.yaml.
 """
+import os
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Literal
 
 import yaml
+from dotenv import dotenv_values
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -63,3 +65,17 @@ def load_servers(path: Path) -> dict[str, ServerConfig]:
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
+
+
+def read_env(name: str) -> str | None:
+    """
+    Lee una variable que no es un campo fijo de Settings (p. ej. RCON_GENESIS_1_PORT):
+    primero del entorno (útil en Docker) y si no, del fichero .env.
+    Se relee en cada consulta: se puede cambiar el .env sin reiniciar el backend.
+    """
+    if name in os.environ:
+        return os.environ[name]
+    env_file = Settings.model_config.get("env_file")
+    if env_file and Path(env_file).exists():
+        return dotenv_values(env_file).get(name)
+    return None

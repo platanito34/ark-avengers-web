@@ -7,7 +7,13 @@ import { getFeaturedServers, getVisibleServers } from "../lib/servers";
 import "../styles/pages/inicio.css";
 
 const servers = await getVisibleServers();
-const featured = await getFeaturedServers(3);
+// Destacados: se pintan todas las tarjetas y se muestran 3. Al principio (y si no hay
+// jugadores), las marcadas `destacado: true`; con datos en directo, el script
+// live-status.ts muestra las 3 con más jugadores.
+const FEATURED_COUNT = 3;
+const destacados = (await getFeaturedServers(FEATURED_COUNT)).map((s) => s.id);
+const initial = [...destacados, ...servers.map((s) => s.id).filter((id) => !destacados.includes(id))]
+  .slice(0, FEATURED_COUNT);
 ---
 <BaseLayout transparentHeader>
 
@@ -59,12 +65,15 @@ const featured = await getFeaturedServers(3);
         <h2 id="featured-title">Servidores destacados</h2>
         <a class="text-link" href="/servidores/">Todos los servidores</a>
       </div>
-      {featured.length > 0 ? (
-        <div class="server-grid">
-          {featured.map((server) => <ServerCard server={server} />)}
+      {servers.length > 0 ? (
+        <div class="server-grid" data-featured={FEATURED_COUNT} data-destacados={destacados.join(",")}
+             data-order={servers.map((s) => s.id).join(",")}>
+          {[...initial, ...servers.map((s) => s.id).filter((id) => !initial.includes(id))].map((id) => (
+            <ServerCard server={servers.find((s) => s.id === id)!} hidden={!initial.includes(id)} />
+          ))}
         </div>
       ) : (
-        <p class="empty-state">Todavía no hay servidores destacados. Consulta la lista completa de servidores.</p>
+        <p class="empty-state">Todavía no hay servidores. Vuelve pronto.</p>
       )}
     </div>
   </section>

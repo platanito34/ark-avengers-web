@@ -6,12 +6,16 @@
 import { RATE_LABELS, type Server } from "../lib/servers";
 import { STATE_LABELS } from "../lib/status-types";
 
-interface Props { server: Server }
-const { server } = Astro.props;
+interface Props {
+  server: Server;
+  /** Oculta al cargar (lo usan los destacados de la portada) */
+  hidden?: boolean;
+}
+const { server, hidden = false } = Astro.props;
 const d = server.data;
 const href = `/servidores/${server.id}/`;
 ---
-<article class="server-card" data-live-slug={server.id} data-max-players={d.jugadoresMax} data-mode={d.modo}>
+<article class="server-card" hidden={hidden} data-live-slug={server.id} data-max-players={d.jugadoresMax} data-mode={d.modo}>
   <div class="server-card__media">
     <img src={d.imagen} alt="" loading="lazy" width="640" height="360">
     <span class="status" data-live="chip" data-state="pending">{STATE_LABELS.pending}</span>

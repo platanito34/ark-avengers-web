@@ -33,7 +33,7 @@ npm run dev
 
 Abre http://localhost:4321
 
-Para ver otros escenarios añade a la URL `?escenario=problemas`, `?escenario=vacio` o `?escenario=error`.
+Para ver otros escenarios añade a la URL `?escenario=problemas`, `?escenario=sin-jugadores`, `?escenario=vacio` o `?escenario=error`.
 
 ### 2. El backend
 
@@ -99,9 +99,9 @@ Cada servidor puede tener varias fuentes en `api/servers.yaml`, por orden de pri
 
 | Fuente        | Qué sabe                                   | Estado                       |
 |---------------|--------------------------------------------|------------------------------|
-| `pterodactyl` | Si el proceso está encendido, arrancando…  | Lista. Modo `simulated` ahora; `live` cuando exista el panel |
-| `ark_rcon`    | Jugadores y versión, desde el propio juego | Preparada, **sin implementar** |
-| `mock`        | Datos de prueba                            | Lista                        |
+| `pterodactyl` | Si el proceso está encendido, arrancando…  | En uso (modo `live`)         |
+| `ark_rcon`    | Jugadores conectados, desde el propio juego| En uso (solo red local)      |
+| `mock`        | Datos de prueba                            | Solo para los tests          |
 
 Reglas de combinación (`api/app/aggregator.py`):
 - El estado lo da la primera fuente que responda (por eso Pterodactyl va primero).
@@ -111,14 +111,21 @@ Reglas de combinación (`api/app/aggregator.py`):
 
 Estados que ve el jugador: Online · Iniciando · Deteniéndose · Offline · Mantenimiento · Sin datos.
 
-### Cuando instaléis Pterodactyl
+### Pterodactyl
 
-1. Cread en el panel un usuario solo para el backend y añadidlo como subusuario de cada servidor, con los permisos mínimos.
-2. Con ese usuario, generad una clave de API de cliente.
+1. Un usuario solo para el backend, añadido como subusuario de cada servidor con el permiso mínimo (`allocation.read`).
+2. Con ese usuario, una clave de API de cliente.
 3. En `api/.env`: `PTERODACTYL_MODE=live`, `PTERODACTYL_URL=...`, `PTERODACTYL_API_KEY=...`
-4. En `api/servers.yaml`, poned el `server_id` real de cada servidor (el identificador corto que sale en la URL del panel).
+4. En `api/servers.yaml`, el `server_id` de cada servidor (el identificador corto que sale en la URL del panel).
 
-La web no cambia.
+### RCON (jugadores conectados)
+
+1. En cada servidor ARK: `RCONEnabled=True`, un `RCONPort` (el puerto asignado al servidor en Pterodactyl) y la `ServerAdminPassword`.
+2. En `api/.env` (ver `api/.env.example`): `RCON_HOST`, `RCON_PASSWORD` y un `RCON_<SERVIDOR>_PORT` por servidor.
+3. El puerto RCON **nunca** se abre a Internet. La API solo se conecta a direcciones de red local.
+
+Si un servidor no responde por RCON, la web sigue mostrando su estado (de Pterodactyl) y los jugadores como "–".
+El máximo de jugadores sale de `jugadoresMax` en la ficha de cada servidor.
 
 ### Para añadir otra fuente
 

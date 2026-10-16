@@ -20,8 +20,15 @@ Navegador → Web estática (web/, Astro) → API propia (api/, FastAPI) → Pte
 - Secretos solo en `api/.env` (nunca en el repositorio ni en `servers.yaml`).
 - Contenido editorial (fichas, normas, textos) en ficheros Markdown dentro de `web/src/content/`. Sin base de datos de momento.
 - Estado en directo: la API consulta las fuentes cada 30 s y guarda una caché; la web lee de la API.
-- Fuentes de estado en `api/app/sources/`: `pterodactyl` (modo simulated ahora; live cuando exista el panel), `ark_rcon` (preparada, sin implementar), `mock`.
-- Hoy los servidores ARK funcionan en Windows Server; Pterodactyl aún no está instalado. No asumir que Pterodactyl es la única fuente.
+- Infraestructura: Pterodactyl está instalado y conectado (`PTERODACTYL_MODE=live`). Los seis servidores ARK están en Pterodactyl (Wings en 192.168.1.101). La API corre en la misma red local (hoy en el ordenador del usuario; más adelante en una VM o Docker, también en la red local).
+- Fuentes de estado en `api/app/sources/`, en este orden en `servers.yaml`:
+  - `pterodactyl`: estado del proceso. Clave de cliente de un usuario subusuario de los seis servidores, solo con el permiso `allocation.read`. No pedir más permisos.
+  - `ark_rcon`: jugadores conectados (`ListPlayers`). Solo se cuentan; los nombres nunca salen de la fuente. Host, puertos y contraseñas en `api/.env` (`RCON_HOST`, `RCON_PASSWORD`, `RCON_<SERVIDOR>_PORT`). Si falla, el estado sigue viniendo de Pterodactyl y los jugadores salen como "–".
+  - `mock`: solo para los tests.
+- RCON SOLO por red local: la fuente se niega a conectar con direcciones que no sean privadas. Nunca abrir el puerto RCON a Internet. Si la API sale de la red local, usar WireGuard.
+- El máximo de jugadores sale de `jugadoresMax` en cada ficha (ni ListPlayers ni el permiso actual de Pterodactyl lo dan).
+- Destacados de la portada: los 3 con más jugadores en ese momento; si nadie tiene jugadores (o no hay datos), primero los de `destacado: true`. Lo decide `web/src/scripts/live-status.ts`.
+- Tests: no dependen de `api/.env` ni de servidores reales (`tests/conftest.py` fuerza el modo simulated; RCON se prueba con un servidor falso local).
 - Estados públicos: online, starting, stopping, offline, maintenance, unknown. Si no se sabe, es `unknown`, nunca `offline`.
 
 ## Contrato web ↔ API
@@ -47,7 +54,7 @@ Navegador → Web estática (web/, Astro) → API propia (api/, FastAPI) → Pte
 
 ## Comandos
 - Web: `cd web` → `npm install` (una vez) → `npm run dev` → http://localhost:4321
-  - Escenarios de prueba: `?escenario=problemas | vacio | error`
+  - Escenarios de prueba: `?escenario=problemas | sin-jugadores | vacio | error`
 - API: `cd api` → `pip install -r requirements.txt` → `uvicorn app.main:app --reload` → http://localhost:8000/docs
 - Tests: `cd api && pytest`
 - Windows: si PowerShell bloquea npm, usar `npm.cmd` o `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
@@ -55,6 +62,6 @@ Navegador → Web estática (web/, Astro) → API propia (api/, FastAPI) → Pte
 ## Próximos pasos previstos (no empezar sin que lo pida)
 1. ~~Nombre centralizado en `site.ts`.~~ Hecho: ARK Avengers.
 2. Revisar textos y datos reales de los servidores.
-3. Implementar la fuente `ark_rcon` para los servidores actuales.
-4. Conectar Pterodactyl (`PTERODACTYL_MODE=live`) cuando esté instalado.
+3. ~~Fuente `ark_rcon` para los jugadores conectados.~~ Hecho y probado con los servidores reales.
+4. ~~Conectar Pterodactyl (`PTERODACTYL_MODE=live`).~~ Hecho.
 5. Publicar la web estática y exponer la API de forma segura (sin abrir puertos de casa; p. ej. túnel).

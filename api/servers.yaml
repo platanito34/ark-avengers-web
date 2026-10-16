@@ -6,7 +6,8 @@
 #
 # sources: de dónde se saca el estado, por orden de prioridad.
 #   - pterodactyl : estado del proceso (encendido/apagado). Opción: server_id
-#   - ark_rcon    : jugadores y versión desde el juego (preparada, sin implementar)
+#   - ark_rcon    : jugadores conectados desde el juego. Opción: env_prefix
+#                   (host, puerto y contraseña se leen de .env con ese prefijo)
 #   - mock        : datos de prueba de mock/status.yaml
 #
 # maintenance: true  -> la web muestra "Mantenimiento" sin consultar nada.
@@ -22,33 +23,45 @@ servers:
     sources:
       - type: pterodactyl
         server_id: "27444bb8"
+      - type: ark_rcon          # jugadores (puerto y contraseña en .env)
+        env_prefix: RCON_GENESIS_1
 
   # [ESP] PVE X10 ARK AVENGERS - RAGNAROK
   ragnarok:
     sources:
       - type: pterodactyl
         server_id: "b7e24f5b"
+      - type: ark_rcon          # jugadores (puerto y contraseña en .env)
+        env_prefix: RCON_RAGNAROK
 
   # [ESP] PVE X10 ARK AVENGERS - ASTRAEOS
   astraeos:
     sources:
       - type: pterodactyl
         server_id: "46dd84a5"
+      - type: ark_rcon          # jugadores (puerto y contraseña en .env)
+        env_prefix: RCON_ASTRAEOS
 
   # [ESP] PVE X10 ARK AVENGERS - THE ISLAND
   the-island:
     sources:
       - type: pterodactyl
         server_id: "1a307053"
+      - type: ark_rcon          # jugadores (puerto y contraseña en .env)
+        env_prefix: RCON_THE_ISLAND
 
   # [ESP] PVE X10 ARK AVENGERS - LOST COLONY
   lost-colony:
     sources:
       - type: pterodactyl
         server_id: "fd91e839"
+      - type: ark_rcon          # jugadores (puerto y contraseña en .env)
+        env_prefix: RCON_LOST_COLONY
 
   # [ESP] PVE X10 ARK AVENGERS - ABERRATION
   aberration:
     sources:
       - type: pterodactyl
         server_id: "ff13312c"
+      - type: ark_rcon          # jugadores (puerto y contraseña en .env)
+        env_prefix: RCON_ABERRATION

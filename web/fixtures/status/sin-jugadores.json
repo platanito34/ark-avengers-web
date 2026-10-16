@@ -1,0 +1,65 @@
+{
+  "servers": [
+    {
+      "slug": "the-island",
+      "state": "online",
+      "players": {
+        "current": 0,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "slug": "genesis-1",
+      "state": "online",
+      "players": {
+        "current": 0,
+        "max": 50
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "slug": "ragnarok",
+      "state": "online",
+      "players": {
+        "current": 0,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "slug": "aberration",
+      "state": "online",
+      "players": {
+        "current": 0,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "slug": "astraeos",
+      "state": "online",
+      "players": {
+        "current": 0,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "slug": "lost-colony",
+      "state": "online",
+      "players": {
+        "current": 0,
+        "max": 70
+      },
+      "version": "v54.3",
+      "checked_at": "2026-01-01T12:00:00Z"
+    }
+  ],
+  "generated_at": "2026-01-01T12:00:00Z"
+}

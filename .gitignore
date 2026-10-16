@@ -6,6 +6,7 @@ __pycache__/
 .pytest_cache/
 .venv/
 
-# Secretos: nunca al repositorio
+# Secretos: nunca al repositorio (.env y cualquier copia: .env.algo)
 .env
+.env.*
 !.env.example
